@@ -1,12 +1,26 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
 import { AppService } from './app.service';
 
-@Controller()
+@Controller('api/guestbook')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  getMessages() {
+    return this.appService.getMessages();
+  }
+
+  @Post()
+  addMessage(@Body() body: { name: string; message: string }) {
+    return this.appService.addMessage(body.name, body.message);
+  }
+
+  @Get('health')
+  healthCheck() {
+    return { 
+      status: 'OK', 
+      message: 'Personal Website API is running',
+      timestamp: new Date().toISOString()
+    };
   }
 }
