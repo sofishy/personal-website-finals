@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css'
 
-// Update this with your deployed backend URL later
-const API_URL = 'http://localhost:3000/api/guestbook';
+const API_URL = 'https://personal-website-finals-ivory.vercel.app/api/guestbook';
 
 function App() {
   const [messages, setMessages] = useState([]);
