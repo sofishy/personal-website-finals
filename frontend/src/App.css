@@ -384,7 +384,7 @@ body::after {
   line-height: 1.4;
 }
 
-/* Photo Gallery Styles - UPDATED */
+/* Photo Gallery Styles */
 .gallery-card {
   grid-column: span 1;
 }
@@ -424,11 +424,11 @@ body::after {
   transform: scale(1.1);
 }
 
-/* Guestbook Card - FIXED HEIGHT WITH SCROLL */
+/* Guestbook Card - WITH SCROLLABLE MESSAGES */
 .guestbook-card {
   display: flex;
   flex-direction: column;
-  height: 500px;
+  height: 500px; /* Same height as education card */
 }
 
 .guestbook-form {
@@ -436,7 +436,7 @@ body::after {
   flex-direction: column;
   gap: 15px;
   margin-bottom: 15px;
-  flex-shrink: 0;
+  flex-shrink: 0; /* Form stays fixed at top */
 }
 
 .form-input,
@@ -500,12 +500,21 @@ body::after {
   box-shadow: 0 0 0 #d44d8c;
 }
 
+/* Messages Section - THIS IS THE SCROLLABLE PART */
+.messages-section {
+  flex: 1; /* Takes remaining space */
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* Important for flexbox scrolling */
+  overflow: hidden; /* Contain the scroll */
+}
+
 .messages-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
-  flex-shrink: 0;
+  flex-shrink: 0; /* Header stays fixed */
 }
 
 .messages-header h3 {
@@ -532,10 +541,9 @@ body::after {
 }
 
 .messages-container {
-  flex: 1;
-  overflow-y: auto;
+  flex: 1; /* Takes remaining space in messages-section */
+  overflow-y: auto; /* SCROLLABLE! */
   padding-right: 10px;
-  min-height: 0;
   
   scrollbar-width: thin;
   scrollbar-color: #ffb6c1 #fff5f8;
