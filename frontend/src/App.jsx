@@ -13,18 +13,18 @@ function App() {
   const [error, setError] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
 
-  // Personal info
+  // Personal info - UPDATE THIS WITH YOUR INFO
   const profile = {
-    name: "Your Name",
-    title: "Web Developer | Cat Lover | Student",
-    bio: "This is your personal bio. Talk about yourself, your skills, and what you're passionate about!",
-    email: "your.email@example.com",
-    github: "https://github.com/yourusername",
-    linkedin: "https://linkedin.com/in/yourusername",
-    skills: ["React", "NestJS", "Supabase", "JavaScript", "HTML/CSS", "Vercel"]
+    name: "Your Name", // Change this
+    title: "Web Developer | Cat Lover | Student", // Change this
+    bio: "This is your personal bio. Talk about yourself, your skills, and what you're passionate about! I love coding, cats, and creating beautiful web experiences.", // Change this
+    email: "your.email@example.com", // Change this
+    github: "https://github.com/yourusername", // Change this
+    linkedin: "https://linkedin.com/in/yourusername", // Change this
+    skills: ["React", "NestJS", "Supabase", "JavaScript", "HTML/CSS", "Vercel", "UI/UX Design", "Cat Wrangling"] // Change these
   };
 
-  // Gallery images
+  // Photo gallery images - JUST PHOTOS, NO TITLES OR DESCRIPTIONS
   const galleryImages = [
     { id: 1, url: "/images/tj1.jpg" },
     { id: 2, url: "/images/tj2.jpg" },
@@ -42,9 +42,11 @@ function App() {
     setLoading(true);
     setError(null);
     try {
+      console.log('📡 Fetching messages...');
       const response = await axios.get(API_URL);
       setMessages(response.data || []);
     } catch (err) {
+      console.error('❌ Error:', err);
       setError('Failed to load messages');
     } finally {
       setLoading(false);
@@ -64,37 +66,54 @@ function App() {
       setComment('');
       fetchMessages();
     } catch (err) {
+      console.error('❌ Error:', err);
       alert('Failed to send message');
     }
   };
 
+  // Close modal
+  const closeModal = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <div className="app">
+      {/* Header */}
       <header className="header">
         <h1>personal website</h1>
         <p>✨ welcome to my little corner of the internet ✨</p>
       </header>
 
+      {/* Main Content - Bento Grid */}
       <main className="main">
-        {/* Profile Card */}
+        {/* Profile Card - Full Width */}
         <div className="bento-card profile-card">
           <h2>😸 about me</h2>
           <div className="profile-content">
-            <div className="profile-avatar">😺</div>
+            <div className="profile-avatar">
+              😺
+            </div>
             <div className="profile-info">
               <h1 className="profile-name">{profile.name}</h1>
               <p className="profile-title">{profile.title}</p>
               <p className="profile-bio">{profile.bio}</p>
+              
               <div className="social-links">
-                <a href={profile.github} className="social-link">🐱 GitHub</a>
-                <a href={profile.linkedin} className="social-link">😺 LinkedIn</a>
-                <a href={`mailto:${profile.email}`} className="social-link">📧 Email</a>
+                <a href={profile.github} target="_blank" rel="noopener noreferrer" className="social-link">
+                  🐱 GitHub
+                </a>
+                <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="social-link">
+                  😺 LinkedIn
+                </a>
+                <a href={`mailto:${profile.email}`} className="social-link">
+                  📧 Email
+                </a>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Gallery Card */}
+        {/* Photo Gallery Card - CLEAN, NO TEXT OVERLAY */}
         <div className="bento-card gallery-card">
           <h2>😸 photo gallery</h2>
           <div className="gallery-grid">
@@ -104,7 +123,7 @@ function App() {
                 className="gallery-item"
                 onClick={() => setSelectedImage(image.url)}
               >
-                <img src={image.url} alt="gallery" />
+                <img src={image.url} alt="gallery photo" />
               </div>
             ))}
           </div>
@@ -115,7 +134,9 @@ function App() {
           <h2>😸 skills</h2>
           <div className="skills-grid">
             {profile.skills.map((skill, index) => (
-              <div key={index} className="skill-item">{skill}</div>
+              <div key={index} className="skill-item">
+                {skill}
+              </div>
             ))}
           </div>
         </div>
@@ -124,95 +145,58 @@ function App() {
         <div className="bento-card">
           <h2>😸 leave a message</h2>
           
-          {/* Form */}
-          <form onSubmit={handleSubmit} style={{ marginBottom: '30px' }}>
+          <form onSubmit={handleSubmit} className="guestbook-form">
             <input
               type="text"
               placeholder="your name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              style={{
-                width: '100%',
-                padding: '15px',
-                marginBottom: '10px',
-                border: '3px solid #ffb6c1',
-                borderRadius: '25px',
-                fontSize: '16px'
-              }}
+              className="form-input"
               required
             />
             <textarea
               placeholder="your message..."
               value={comment}
               onChange={(e) => setComment(e.target.value)}
-              style={{
-                width: '100%',
-                padding: '15px',
-                marginBottom: '10px',
-                border: '3px solid #ffb6c1',
-                borderRadius: '25px',
-                fontSize: '16px',
-                minHeight: '100px'
-              }}
+              className="form-textarea"
               rows="3"
               required
             />
-            <button 
-              type="submit"
-              style={{
-                width: '100%',
-                padding: '15px',
-                background: 'linear-gradient(45deg, #ff69b4, #ffb6c1)',
-                color: 'white',
-                border: 'none',
-                borderRadius: '50px',
-                fontSize: '1.2rem',
-                cursor: 'pointer'
-              }}
-            >
-              send message 🐱
+            <button type="submit" className="submit-btn">
+              send message
             </button>
           </form>
 
-          {/* Messages */}
-          <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px' }}>
-              <h3 style={{ color: '#ff69b4' }}>messages</h3>
-              <span style={{ background: '#ffb6c1', color: 'white', padding: '5px 15px', borderRadius: '25px' }}>
-                {messages.length}
-              </span>
-            </div>
+          <div className="messages-header">
+            <h3>messages</h3>
+            <span className="message-count">{messages.length}</span>
+          </div>
 
-            <div style={{ maxHeight: '300px', overflowY: 'auto' }}>
-              {loading && <div style={{ textAlign: 'center', padding: '20px' }}>loading messages...</div>}
-              
-              {error && (
-                <div style={{ background: '#fff0f3', color: '#ff4d6d', padding: '15px', borderRadius: '15px', textAlign: 'center' }}>
-                  😿 {error}
-                </div>
-              )}
-              
-              {!loading && !error && messages.length === 0 && (
-                <div style={{ textAlign: 'center', padding: '30px', color: '#ffb6c1' }}>
-                  be the first to leave a message!
-                </div>
-              )}
-              
+          <div className="messages-container">
+            {loading && <div className="loading">loading messages...</div>}
+            
+            {error && (
+              <div className="error-message">
+                😿 {error}
+              </div>
+            )}
+            
+            {!loading && !error && messages.length === 0 && (
+              <div className="no-messages">
+                be the first to leave a message!
+              </div>
+            )}
+            
+            <div className="messages-list">
               {messages.map((msg) => (
-                <div key={msg.id} style={{
-                  background: 'white',
-                  padding: '15px',
-                  borderRadius: '15px',
-                  marginBottom: '10px',
-                  borderLeft: '5px solid #ff69b4'
-                }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px' }}>
-                    <span style={{ color: '#ff69b4', fontWeight: 'bold' }}>🐱 {msg.name}</span>
-                    <span style={{ color: '#ffb6c1', fontSize: '0.8rem' }}>
+                <div key={msg.id} className="message-card">
+                  <div className="message-header">
+                    <span className="message-name">{msg.name}</span>
+                    <span className="message-date">
                       {new Date(msg.created_at).toLocaleDateString()}
                     </span>
                   </div>
-                  <p style={{ color: '#8b4c61' }}>{msg.message}</p>
+                  <p className="message-text">{msg.message}</p>
                 </div>
               ))}
             </div>
@@ -220,37 +204,17 @@ function App() {
         </div>
       </main>
 
+      {/* Footer */}
       <footer className="footer">
         <p>© 2026 {profile.name} • made with 😺 and 🐱</p>
       </footer>
 
-      {/* Modal */}
+      {/* Image Modal - SIMPLE, JUST THE IMAGE */}
       {selectedImage && (
-        <div style={{
-          position: 'fixed',
-          top: 0, left: 0, right: 0, bottom: 0,
-          background: 'rgba(0,0,0,0.7)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 1000
-        }} onClick={() => setSelectedImage(null)}>
-          <div style={{
-            background: 'white',
-            padding: '20px',
-            borderRadius: '25px',
-            maxWidth: '500px',
-            width: '90%',
-            position: 'relative'
-          }} onClick={(e) => e.stopPropagation()}>
-            <span style={{
-              position: 'absolute',
-              top: '10px',
-              right: '15px',
-              fontSize: '2rem',
-              cursor: 'pointer'
-            }} onClick={() => setSelectedImage(null)}>&times;</span>
-            <img src={selectedImage} alt="gallery" style={{ width: '100%', borderRadius: '15px' }} />
+        <div className="modal" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <span className="close-btn" onClick={closeModal}>&times;</span>
+            <img src={selectedImage} alt="gallery photo" />
           </div>
         </div>
       )}
