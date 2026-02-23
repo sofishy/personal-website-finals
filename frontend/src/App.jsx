@@ -187,67 +187,116 @@ function App() {
           </div>
         </div>
 
-        {/* Guestbook Card - WITH EVERYTHING SCROLLABLE */}
-        <div className="bento-card guestbook-card">
+        {/* Guestbook Card - FIXED WITH SCROLLABLE MESSAGES */}
+        <div className="bento-card" style={{ height: '500px', display: 'flex', flexDirection: 'column' }}>
           <h2>Leave a Message!</h2>
           
-          {/* Form - stays fixed at top */}
-          <form onSubmit={handleSubmit} className="guestbook-form">
+          {/* Form - stays at top */}
+          <form onSubmit={handleSubmit} style={{ marginBottom: '15px', flexShrink: 0 }}>
             <input
               type="text"
               placeholder="Your Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="form-input"
+              style={{
+                width: '100%',
+                padding: '15px',
+                marginBottom: '10px',
+                border: '3px solid #ffb6c1',
+                borderRadius: '25px',
+                fontSize: '16px'
+              }}
               required
             />
             <textarea
               placeholder="Your Message"
               value={comment}
               onChange={(e) => setComment(e.target.value)}
-              className="form-textarea"
+              style={{
+                width: '100%',
+                padding: '15px',
+                marginBottom: '10px',
+                border: '3px solid #ffb6c1',
+                borderRadius: '25px',
+                fontSize: '16px',
+                minHeight: '100px'
+              }}
               rows="3"
               required
             />
-            <button type="submit" className="submit-btn">
-              Send
+            <button 
+              type="submit"
+              style={{
+                width: '100%',
+                padding: '15px',
+                background: 'linear-gradient(45deg, #ff69b4, #ffb6c1)',
+                color: 'white',
+                border: 'none',
+                borderRadius: '50px',
+                fontSize: '1.2rem',
+                cursor: 'pointer'
+              }}
+            >
+              Send ❤️
             </button>
           </form>
 
-          {/* Messages Container - EVERYTHING HERE SCROLLS TOGETHER */}
-          <div className="messages-scroll-container">
-            <div className="messages-header">
-              <h3>Messages</h3>
-              <span className="message-count">{messages.length}</span>
-            </div>
+          {/* Messages header - stays visible */}
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center',
+            marginBottom: '10px',
+            flexShrink: 0
+          }}>
+            <h3 style={{ color: '#ff69b4' }}>Messages</h3>
+            <span style={{ 
+              background: '#ffb6c1', 
+              color: 'white', 
+              padding: '5px 15px', 
+              borderRadius: '25px' 
+            }}>
+              {messages.length}
+            </span>
+          </div>
 
-            {loading && <div className="loading">loading messages...</div>}
+          {/* ONLY the messages list scrolls */}
+          <div style={{ 
+            overflowY: 'auto', 
+            flex: 1,
+            paddingRight: '10px'
+          }}>
+            {loading && <div style={{ textAlign: 'center', padding: '20px' }}>loading...</div>}
             
             {error && (
-              <div className="error-message">
+              <div style={{ background: '#fff0f3', color: '#ff4d6d', padding: '15px', borderRadius: '15px' }}>
                 😿 {error}
               </div>
             )}
             
             {!loading && !error && messages.length === 0 && (
-              <div className="no-messages">
+              <div style={{ textAlign: 'center', padding: '30px', color: '#ffb6c1' }}>
                 Be the first to leave a message!
               </div>
             )}
             
-            <div className="messages-list">
-              {messages.map((msg) => (
-                <div key={msg.id} className="message-card">
-                  <div className="message-header">
-                    <span className="message-name">{msg.name}</span>
-                    <span className="message-date">
-                      {new Date(msg.created_at).toLocaleDateString()}
-                    </span>
-                  </div>
-                  <p className="message-text">{msg.message}</p>
+            {messages.map((msg) => (
+              <div key={msg.id} style={{
+                background: 'white',
+                padding: '15px',
+                borderRadius: '15px',
+                marginBottom: '10px',
+                borderLeft: '5px solid #ff69b4'
+              }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px' }}>
+                  <span style={{ color: '#ff69b4', fontWeight: 'bold' }}>🐱 {msg.name}</span>
+                  <span style={{ color: '#ffb6c1', fontSize: '0.8rem' }}>
+                    {new Date(msg.created_at).toLocaleDateString()}
+                  </span>
                 </div>
-              ))}
-            </div>
+                <p style={{ color: '#8b4c61' }}>{msg.message}</p>
+              </div>
+            ))}
           </div>
         </div>
       </main>
