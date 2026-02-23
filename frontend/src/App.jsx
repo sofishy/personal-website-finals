@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import './App.css'
 
-// Your backend URL
+// YOUR BACKEND URL - MAKE SURE THIS IS EXACTLY RIGHT
 const API_URL = 'https://personal-website-finals-ivory.vercel.app/api/guestbook';
 
 function App() {
@@ -10,29 +9,7 @@ function App() {
   const [name, setName] = useState('');
   const [comment, setComment] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  // Personal info
-  const profile = {
-    name: "Your Name",
-    title: "Web Developer | Cat Lover | Student",
-    bio: "This is your personal bio. Talk about yourself, your skills, and what you're passionate about!",
-    email: "your.email@example.com",
-    github: "https://github.com/yourusername",
-    linkedin: "https://linkedin.com/in/yourusername",
-    skills: ["React", "NestJS", "Supabase", "JavaScript", "HTML/CSS", "Vercel"]
-  };
-
-  // Gallery images
-  const galleryImages = [
-    { id: 1, url: "/images/tj1.jpg" },
-    { id: 2, url: "/images/tj2.jpg" },
-    { id: 3, url: "/images/fam1.jpg" },
-    { id: 4, url: "/images/fam2.jpg" },
-    { id: 5, url: "/images/friend1.jpg" },
-    { id: 6, url: "/images/friend2.jpg" }
-  ];
+  const [error, setError] = useState('');
 
   useEffect(() => {
     fetchMessages();
@@ -40,16 +17,15 @@ function App() {
 
   const fetchMessages = async () => {
     setLoading(true);
-    setError(null);
+    setError('');
     try {
       console.log('Fetching from:', API_URL);
       const response = await axios.get(API_URL);
-      console.log('Received data:', response.data);
-      // Make sure we're setting an array
-      setMessages(Array.isArray(response.data) ? response.data : []);
+      console.log('Response:', response.data);
+      setMessages(response.data || []);
     } catch (err) {
-      console.error('Error:', err);
-      setError('Failed to load messages: ' + err.message);
+      console.error('Full error:', err);
+      setError('Failed: ' + err.message);
     } finally {
       setLoading(false);
     }
@@ -57,155 +33,54 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!name.trim() || !comment.trim()) {
-      alert('Please fill in both fields');
-      return;
-    }
+    if (!name || !comment) return;
 
     try {
-      await axios.post(API_URL, { 
-        name: name.trim(), 
-        message: comment.trim() 
-      });
+      await axios.post(API_URL, { name, message: comment });
       setName('');
       setComment('');
       fetchMessages();
     } catch (err) {
-      console.error('Post error:', err);
-      alert('Failed to send message: ' + err.message);
+      alert('Error: ' + err.message);
     }
   };
 
   return (
-    <div className="app">
-      <header className="header">
-        <h1>personal website</h1>
-        <p>✨ welcome to my little corner of the internet ✨</p>
-      </header>
+    <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
+      <h1>Personal Website</h1>
+      
+      <div style={{ marginBottom: '30px' }}>
+        <input
+          placeholder="Your Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          style={{ width: '100%', padding: '10px', marginBottom: '10px' }}
+        />
+        <textarea
+          placeholder="Your Message"
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          style={{ width: '100%', padding: '10px', marginBottom: '10px', height: '100px' }}
+        />
+        <button onClick={handleSubmit}>Send Message</button>
+      </div>
 
-      <main className="main">
-        {/* Profile Card */}
-        <div className="bento-card profile-card">
-          <h2>😸 about me</h2>
-          <div className="profile-content">
-            <div className="profile-avatar">😺</div>
-            <div className="profile-info">
-              <h1 className="profile-name">{profile.name}</h1>
-              <p className="profile-title">{profile.title}</p>
-              <p className="profile-bio">{profile.bio}</p>
-              <div className="social-links">
-                <a href={profile.github} target="_blank" rel="noopener noreferrer" className="social-link">🐱 GitHub</a>
-                <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="social-link">😺 LinkedIn</a>
-                <a href={`mailto:${profile.email}`} className="social-link">📧 Email</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Gallery Card */}
-        <div className="bento-card gallery-card">
-          <h2>😸 photo gallery</h2>
-          <div className="gallery-grid">
-            {galleryImages.map((image) => (
-              <div 
-                key={image.id} 
-                className="gallery-item"
-                onClick={() => setSelectedImage(image.url)}
-              >
-                <img src={image.url} alt="gallery" />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Skills Card */}
-        <div className="bento-card">
-          <h2>😸 skills</h2>
-          <div className="skills-grid">
-            {profile.skills.map((skill, index) => (
-              <div key={index} className="skill-item">{skill}</div>
-            ))}
-          </div>
-        </div>
-
-        {/* Guestbook Card */}
-        <div className="bento-card guestbook-card">
-          <h2>😸 leave a message</h2>
-          
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="guestbook-form">
-            <input
-              type="text"
-              placeholder="your name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="form-input"
-              required
-            />
-            <textarea
-              placeholder="your message..."
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-              className="form-textarea"
-              rows="3"
-              required
-            />
-            <button type="submit" className="submit-btn">
-              send message 🐱
-            </button>
-          </form>
-
-          {/* Messages */}
-          <div className="messages-section">
-            <div className="messages-header">
-              <h3>messages</h3>
-              <span className="message-count">{messages.length}</span>
-            </div>
-
-            <div className="messages-container">
-              {loading && <div className="loading">loading messages...</div>}
-              
-              {error && (
-                <div className="error-message">
-                  😿 {error}
-                </div>
-              )}
-              
-              {!loading && !error && messages.length === 0 && (
-                <div className="no-messages">
-                  be the first to leave a message!
-                </div>
-              )}
-              
-              {messages.map((msg) => (
-                <div key={msg.id} className="message-card">
-                  <div className="message-header">
-                    <span className="message-name">{msg.name}</span>
-                    <span className="message-date">
-                      {new Date(msg.created_at).toLocaleDateString()}
-                    </span>
-                  </div>
-                  <p className="message-text">{msg.message}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </main>
-
-      <footer className="footer">
-        <p>© 2026 {profile.name} • made with 😺 and 🐱</p>
-      </footer>
-
-      {/* Modal */}
-      {selectedImage && (
-        <div className="modal" onClick={() => setSelectedImage(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <span className="close-btn" onClick={() => setSelectedImage(null)}>&times;</span>
-            <img src={selectedImage} alt="gallery" />
-          </div>
+      <h3>Messages ({messages.length})</h3>
+      
+      {loading && <p>Loading...</p>}
+      
+      {error && (
+        <div style={{ color: 'red', padding: '10px', background: '#ffeeee' }}>
+          ❌ {error}
         </div>
       )}
+      
+      {messages.map(msg => (
+        <div key={msg.id} style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '10px' }}>
+          <strong>{msg.name}</strong> - {new Date(msg.created_at).toLocaleDateString()}
+          <p>{msg.message}</p>
+        </div>
+      ))}
     </div>
   );
 }
