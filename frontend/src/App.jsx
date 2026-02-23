@@ -15,7 +15,7 @@ function App() {
 
   // Personal info - UPDATE THIS WITH YOUR INFO
   const profile = {
-    name: "Your Name", // Change this
+    name: "Sofia", // Changed to your name
     title: "Web Developer | Cat Lover | Student",
     bio: "This is your personal bio. Talk about yourself, your skills, and what you're passionate about! I love coding, cats, and creating beautiful web experiences.",
     email: "your.email@example.com",
@@ -89,11 +89,13 @@ function App() {
 
       {/* Main Content - Bento Grid */}
       <main className="main">
-        {/* Profile Card - Full Width */}
+        {/* Profile Card - Full Width WITH YOUR PHOTO */}
         <div className="bento-card profile-card">
           <h2>😸 about me</h2>
           <div className="profile-content">
-            <div className="profile-avatar">😺</div>
+            <div className="profile-avatar">
+              <img src="/images/sofia.jpg" alt="Sofia" className="profile-image" />
+            </div>
             <div className="profile-info">
               <h1 className="profile-name">{profile.name}</h1>
               <p className="profile-title">{profile.title}</p>
