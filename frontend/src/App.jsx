@@ -27,10 +27,10 @@ function App() {
   // Photo gallery images - REPLACE WITH YOUR IMAGES
   const galleryImages = [
     { id: 1, url: "/images/tj1.jpg" },
-    { id: 2, url: "/images/tj2.jpg" },
-    { id: 3, url: "/images/fam1.jpg" },
-    { id: 4, url: "/images/fam2.jpg" },
-    { id: 5, url: "/images/friend1.jpg" },
+    { id: 2, url: "/images/fam2.jpg" },
+    { id: 3, url: "/images/friend1.jpg" },
+    { id: 4, url: "/images/tj2.jpg" },
+    { id: 5, url: "/images/fam1.jpg" },
     { id: 6, url: "/images/friend2.jpg" }
   ];
 
