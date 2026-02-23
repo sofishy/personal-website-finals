@@ -264,7 +264,7 @@ body::after {
   border-color: white;
 }
 
-/* Photo Gallery Styles - UPDATED (no overlay) */
+/* Photo Gallery Styles */
 .gallery-card {
   grid-column: span 1;
 }
@@ -304,20 +304,43 @@ body::after {
   transform: scale(1.1);
 }
 
-/* Guestbook Form */
+/* Guestbook Card Layout - SEPARATED BOXES */
+.guestbook-card {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: 650px;
+  gap: 20px;
+}
+
+/* Form Container - Top Box */
+.guestbook-form-container {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 25px;
+  padding: 25px;
+  border: 3px dashed #ff69b4;
+  box-shadow: 0 5px 15px rgba(255, 105, 180, 0.15);
+  transition: all 0.3s;
+}
+
+.guestbook-form-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 105, 180, 0.25);
+  border-color: #ff69b4;
+}
+
 .guestbook-form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-bottom: 30px;
 }
 
 .form-input,
 .form-textarea {
   width: 100%;
   padding: 15px 20px;
-  border: 3px solid #ffb6c1;
-  border-radius: 25px;
+  border: 2px solid #ffb6c1;
+  border-radius: 20px;
   font-size: 16px;
   transition: all 0.3s;
   background: white;
@@ -329,8 +352,8 @@ body::after {
 .form-textarea:focus {
   outline: none;
   border-color: #ff69b4;
-  box-shadow: 0 0 0 5px rgba(255, 105, 180, 0.2);
-  transform: scale(1.02);
+  box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.2);
+  transform: scale(1.01);
 }
 
 .form-input::placeholder,
@@ -343,41 +366,55 @@ body::after {
   background: linear-gradient(45deg, #ff69b4, #ffb6c1);
   color: white;
   border: none;
-  padding: 15px 30px;
+  padding: 15px 25px;
   font-size: 1.2rem;
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s;
   font-weight: bold;
   letter-spacing: 1px;
-  box-shadow: 0 5px 0 #d44d8c;
+  box-shadow: 0 4px 0 #d44d8c;
   border: 2px solid white;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
+  width: 100%;
 }
 
 .submit-btn::after {
   content: "😺";
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 .submit-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 0 #d44d8c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #d44d8c;
+  background: linear-gradient(45deg, #ff8ab5, #ffc0cb);
 }
 
 .submit-btn:active {
-  transform: translateY(5px);
+  transform: translateY(4px);
   box-shadow: 0 0 0 #d44d8c;
 }
 
-/* Messages Section */
-.messages-container {
-  max-height: 400px;
-  overflow-y: auto;
-  padding-right: 10px;
+/* Messages Container - Bottom Box */
+.messages-container-box {
+  background: rgba(255, 240, 245, 0.95);
+  border-radius: 25px;
+  padding: 25px;
+  border: 3px solid #ffb6c1;
+  box-shadow: 0 5px 15px rgba(255, 105, 180, 0.15);
+  flex: 1;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.messages-container-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 105, 180, 0.25);
+  border-color: #ff69b4;
 }
 
 .messages-header {
@@ -385,65 +422,85 @@ body::after {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px dashed #ffb6c1;
 }
 
 .messages-header h3 {
   color: #ff69b4;
   font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.messages-header h3::before {
+  content: "💭";
+  font-size: 1.5rem;
 }
 
 .message-count {
-  background: #ffb6c1;
+  background: #ff69b4;
   color: white;
   padding: 5px 15px;
   border-radius: 25px;
   font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(255, 105, 180, 0.3);
+}
+
+.messages-scroll {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 10px;
+  flex: 1;
 }
 
 .messages-list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 12px;
 }
 
 .message-card {
   background: white;
-  padding: 20px;
-  border-radius: 20px;
+  padding: 15px;
+  border-radius: 15px;
   border-left: 5px solid #ff69b4;
-  box-shadow: 0 5px 15px rgba(255, 105, 180, 0.1);
-  transition: transform 0.3s;
+  box-shadow: 0 2px 8px rgba(255, 105, 180, 0.1);
+  transition: transform 0.2s;
   position: relative;
 }
 
 .message-card:hover {
   transform: translateX(5px);
-  box-shadow: 0 5px 20px rgba(255, 105, 180, 0.2);
+  box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
 }
 
 .message-card::before {
   content: "💬";
   position: absolute;
-  top: -10px;
-  left: 20px;
+  top: -8px;
+  left: 15px;
   background: white;
-  padding: 5px;
+  padding: 3px;
   border-radius: 50%;
   border: 2px solid #ffb6c1;
+  font-size: 0.9rem;
 }
 
 .message-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   padding-bottom: 5px;
-  border-bottom: 2px dashed #ffb6c1;
+  border-bottom: 1px dashed #ffb6c1;
 }
 
 .message-name {
   color: #ff69b4;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: bold;
   display: flex;
   align-items: center;
@@ -452,30 +509,32 @@ body::after {
 
 .message-name::before {
   content: "🐱";
+  font-size: 1rem;
 }
 
 .message-date {
   color: #ffb6c1;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   background: #fff0f3;
-  padding: 3px 10px;
-  border-radius: 15px;
+  padding: 2px 8px;
+  border-radius: 12px;
 }
 
 .message-text {
-  line-height: 1.6;
+  line-height: 1.5;
   color: #8b4c61;
+  font-size: 0.95rem;
 }
 
 /* Loading and Empty States */
 .loading, .no-messages {
   text-align: center;
   color: #ffb6c1;
-  padding: 40px;
+  padding: 30px;
   font-style: italic;
-  background: #fff9fb;
-  border-radius: 30px;
-  border: 3px dashed #ffb6c1;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  border: 2px dashed #ffb6c1;
 }
 
 .loading::before {
@@ -489,7 +548,7 @@ body::after {
 .no-messages::before {
   content: "😿";
   display: block;
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin-bottom: 10px;
 }
 
@@ -498,13 +557,13 @@ body::after {
   background: #fff0f3;
   color: #ff4d6d;
   padding: 15px;
-  border-radius: 20px;
-  margin-bottom: 20px;
+  border-radius: 15px;
   text-align: center;
   border: 2px solid #ffb6c1;
+  margin-bottom: 15px;
 }
 
-/* Modal Styles - UPDATED (clean, just image) */
+/* Modal Styles */
 .modal {
   position: fixed;
   top: 0;
@@ -527,8 +586,8 @@ body::after {
 
 .modal-content {
   background: white;
-  padding: 25px;
-  border-radius: 30px;
+  padding: 20px;
+  border-radius: 25px;
   max-width: 500px;
   width: 90%;
   max-height: 80vh;
@@ -549,13 +608,13 @@ body::after {
 
 .close-btn {
   position: absolute;
-  top: 15px;
-  right: 20px;
+  top: 10px;
+  right: 15px;
   font-size: 2rem;
   cursor: pointer;
   color: #ff69b4;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -574,17 +633,17 @@ body::after {
 
 .modal-content img {
   width: 100%;
-  border-radius: 20px;
+  border-radius: 15px;
   border: 3px solid #ffb6c1;
 }
 
 /* Footer */
 .footer {
   text-align: center;
-  padding: 30px;
+  padding: 25px;
   background: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(5px);
-  border-radius: 30px;
+  border-radius: 25px;
   margin-top: 30px;
   border: 2px dashed #ffb6c1;
   color: #8b4c61;
@@ -594,14 +653,14 @@ body::after {
 .footer::before,
 .footer::after {
   content: "😺";
-  font-size: 1.5rem;
-  margin: 0 10px;
+  font-size: 1.3rem;
+  margin: 0 8px;
   opacity: 0.5;
 }
 
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -676,6 +735,19 @@ body::after {
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .guestbook-card {
+    min-height: auto;
+  }
+  
+  .messages-scroll {
+    max-height: 250px;
+  }
+  
+  .guestbook-form-container,
+  .messages-container-box {
+    padding: 20px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -722,6 +794,16 @@ body::after {
   
   .gallery-item {
     aspect-ratio: 16/9;
+  }
+  
+  .guestbook-form-container,
+  .messages-container-box {
+    padding: 15px;
+  }
+  
+  .submit-btn {
+    font-size: 1rem;
+    padding: 12px 20px;
   }
 }
 
