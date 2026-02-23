@@ -17,11 +17,22 @@ function App() {
   const profile = {
     name: "Sofia", 
     title: "Iane Sofia Francheska A. Padua",
-    bio: "I am a 2nd Year BSIT student from Asia Pacific College",
-    email: "sofia@example.com",
+    bio: "I am a 2nd Year BSIT student from Asia Pacific College,",
+    email: "your.email@example.com",
     github: "https://github.com/sofishy",
     linkedin: "www.linkedin.com/in/iane-sofia-padua-005b40322",
-    skills: ["React", "NestJS", "Supabase", "JavaScript", "HTML/CSS", "Vercel", "UI/UX Design", "Git/GitHub", "REST APIs"]
+    skills: ["React",
+             "NestJS", 
+             "Supabase", 
+             "JavaScript", 
+             "TypeScript",  
+             "HTML/CSS",  
+             "Vercel", 
+             "UI/UX Design", 
+             "Code Combat",
+             "Git/GitHub",  // Added
+             "REST APIs",   // Added
+             "Responsive Design"]
   };
 
   // Photo gallery images 
@@ -42,9 +53,12 @@ function App() {
     setLoading(true);
     setError(null);
     try {
+      console.log('Fetching from:', API_URL);
       const response = await axios.get(API_URL);
+      console.log('Received:', response.data);
       setMessages(Array.isArray(response.data) ? response.data : []);
     } catch (err) {
+      console.error('Error:', err);
       setError('Failed to load messages');
     } finally {
       setLoading(false);
@@ -67,6 +81,7 @@ function App() {
       setComment('');
       fetchMessages();
     } catch (err) {
+      console.error('Post error:', err);
       alert('Failed to send message');
     }
   };
@@ -125,6 +140,7 @@ function App() {
         <div className="bento-card education-card">
           <h2>Education</h2>
           <div className="education-list">
+            
             <div className="education-item">
               <div className="education-year">2024 - Present</div>
               <div className="education-details">
@@ -133,14 +149,16 @@ function App() {
                 <p className="education-desc">2nd Year Student</p>
               </div>
             </div>
+            
             <div className="education-item">
               <div className="education-year">2022 - 2024</div>
               <div className="education-details">
                 <h3>Senior High School Graduate</h3>
                 <p className="education-school">Pasay City South High School</p>
-                <p className="education-desc">STEM</p>
+                <p className="education-desc">Science, Technology, Engineering and Mathematics (STEM)</p>
               </div>
             </div>
+            
             <div className="education-item">
               <div className="education-year">2018 - 2022</div>
               <div className="education-details">
@@ -149,6 +167,7 @@ function App() {
                 <p className="education-desc">Junior High School</p>
               </div>
             </div>
+
             <div className="education-item">
               <div className="education-year">2012 - 2018</div>
               <div className="education-details">
@@ -157,6 +176,7 @@ function App() {
                 <p className="education-desc">Primary Education</p>
               </div>
             </div>
+            
           </div>
         </div>
 
@@ -170,180 +190,74 @@ function App() {
           </div>
         </div>
 
-        {/* Guestbook Card - COMPLETELY SELF-CONTAINED */}
-        <div className="bento-card" style={{ 
-          height: '500px', 
-          display: 'flex', 
-          flexDirection: 'column',
-          padding: '25px',
-          backgroundColor: 'rgba(255, 255, 255, 0.95)',
-          borderRadius: '30px',
-          border: '3px solid white'
-        }}>
-          <h2 style={{ 
-            color: '#ff69b4', 
-            fontSize: '2rem', 
-            marginBottom: '20px',
-            borderBottom: '3px dashed #ffb6c1',
-            paddingBottom: '15px'
-          }}>Leave a Message!</h2>
+        {/* Guestbook Card */}
+        <div className="bento-card">
+          <h2>Leave a Message!</h2>
           
-          {/* Form Section */}
-          <div style={{ marginBottom: '20px' }}>
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="guestbook-form">
             <input
               type="text"
               placeholder="Your Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              style={{
-                width: '100%',
-                padding: '15px',
-                marginBottom: '10px',
-                border: '3px solid #ffb6c1',
-                borderRadius: '25px',
-                fontSize: '16px',
-                backgroundColor: 'white',
-                color: '#8b4c61',
-                outline: 'none'
-              }}
+              className="form-input"
               required
             />
             <textarea
               placeholder="Your Message"
               value={comment}
               onChange={(e) => setComment(e.target.value)}
-              style={{
-                width: '100%',
-                padding: '15px',
-                marginBottom: '10px',
-                border: '3px solid #ffb6c1',
-                borderRadius: '25px',
-                fontSize: '16px',
-                minHeight: '100px',
-                backgroundColor: 'white',
-                color: '#8b4c61',
-                outline: 'none'
-              }}
+              className="form-textarea"
               rows="3"
               required
             />
-            <button 
-              type="submit"
-              onClick={handleSubmit}
-              style={{
-                width: '100%',
-                padding: '15px',
-                background: 'linear-gradient(45deg, #ff69b4, #ffb6c1)',
-                color: 'white',
-                border: 'none',
-                borderRadius: '50px',
-                fontSize: '1.2rem',
-                cursor: 'pointer',
-                fontWeight: 'bold',
-                boxShadow: '0 5px 0 #d44d8c',
-                transition: 'all 0.3s'
-              }}
-            >
-              Send ❤️
+            <button type="submit" className="submit-btn">
+              Send
             </button>
+          </form>
+
+          {/* Messages */}
+          <div className="messages-header">
+            <h3>Messages</h3>
+            <span className="message-count">{messages.length}</span>
           </div>
 
-          {/* Messages Header */}
-          <div style={{ 
-            display: 'flex', 
-            justifyContent: 'space-between', 
-            alignItems: 'center',
-            marginBottom: '15px'
-          }}>
-            <h3 style={{ 
-              color: '#ff69b4', 
-              fontSize: '1.5rem',
-              margin: 0
-            }}>Messages</h3>
-            <span style={{ 
-              background: '#ffb6c1', 
-              color: 'white', 
-              padding: '5px 15px', 
-              borderRadius: '25px',
-              fontWeight: 'bold'
-            }}>
-              {messages.length}
-            </span>
-          </div>
-
-          {/* Scrollable Messages List - ONLY THIS SCROLLS */}
-          <div style={{ 
-            overflowY: 'auto',
-            flex: 1,
-            paddingRight: '10px'
-          }}>
-            {loading && (
-              <div style={{ textAlign: 'center', padding: '30px', color: '#ffb6c1' }}>
-                🐱 loading messages...
-              </div>
-            )}
+          <div className="messages-container">
+            {loading && <div className="loading">loading messages...</div>}
             
             {error && (
-              <div style={{ 
-                background: '#fff0f3', 
-                color: '#ff4d6d', 
-                padding: '20px', 
-                borderRadius: '20px',
-                textAlign: 'center',
-                border: '2px solid #ffb6c1'
-              }}>
+              <div className="error-message">
                 😿 {error}
               </div>
             )}
             
             {!loading && !error && messages.length === 0 && (
-              <div style={{ 
-                textAlign: 'center', 
-                padding: '40px', 
-                color: '#ffb6c1',
-                fontStyle: 'italic',
-                border: '3px dashed #ffb6c1',
-                borderRadius: '30px'
-              }}>
-                😿 Be the first to leave a message!
+              <div className="no-messages">
+                Be the first to leave a message!
               </div>
             )}
             
-            {messages.map((msg) => (
-              <div key={msg.id} style={{
-                background: 'white',
-                padding: '15px',
-                borderRadius: '15px',
-                marginBottom: '12px',
-                borderLeft: '5px solid #ff69b4',
-                boxShadow: '0 2px 8px rgba(255,105,180,0.1)'
-              }}>
-                <div style={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between', 
-                  marginBottom: '8px',
-                  borderBottom: '2px dashed #ffb6c1',
-                  paddingBottom: '5px'
-                }}>
-                  <span style={{ color: '#ff69b4', fontWeight: 'bold' }}>
-                    🐱 {msg.name}
-                  </span>
-                  <span style={{ color: '#ffb6c1', fontSize: '0.8rem' }}>
-                    {new Date(msg.created_at).toLocaleDateString()}
-                  </span>
+            <div className="messages-list">
+              {messages.map((msg) => (
+                <div key={msg.id} className="message-card">
+                  <div className="message-header">
+                    <span className="message-name">{msg.name}</span>
+                    <span className="message-date">
+                      {new Date(msg.created_at).toLocaleDateString()}
+                    </span>
+                  </div>
+                  <p className="message-text">{msg.message}</p>
                 </div>
-                <p style={{ color: '#8b4c61', margin: 0, lineHeight: '1.5' }}>
-                  {msg.message}
-                </p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </main>
 
       {/* Footer */}
       <footer className="footer">
-        <p>© 2026 {profile.name}</p>
+        <p>© 2026 {profile.title}</p>
       </footer>
 
       {/* Image Modal */}
@@ -351,7 +265,7 @@ function App() {
         <div className="modal" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <span className="close-btn" onClick={closeModal}>&times;</span>
-            <img src={selectedImage} alt="gallery" style={{ width: '100%', borderRadius: '15px' }} />
+            <img src={selectedImage} alt="gallery" />
           </div>
         </div>
       )}

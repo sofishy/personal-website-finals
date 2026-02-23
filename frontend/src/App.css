@@ -182,6 +182,7 @@ body::after {
   background: white;
 }
 
+/* Profile image */
 .profile-image {
   width: 100%;
   height: 100%;
@@ -280,12 +281,12 @@ body::after {
   border-color: white;
 }
 
-/* Education Card - SCROLLABLE */
+/* Education Card - FIXED HEIGHT TO MATCH GALLERY */
 .education-card {
   grid-column: span 1;
   display: flex;
   flex-direction: column;
-  height: 500px;
+  height: 500px; /* Fixed height to match gallery */
 }
 
 .education-list {
@@ -297,10 +298,12 @@ body::after {
   padding-right: 10px;
   flex: 1;
   
+  /* Custom scrollbar */
   scrollbar-width: thin;
   scrollbar-color: #ffb6c1 #fff5f8;
 }
 
+/* Custom scrollbar for Chrome/Safari/Edge */
 .education-list::-webkit-scrollbar {
   width: 6px;
 }
@@ -424,20 +427,12 @@ body::after {
   transform: scale(1.1);
 }
 
-/* Guestbook Card - EVERYTHING SCROLLS */
-.guestbook-card {
-  display: flex;
-  flex-direction: column;
-  height: 500px; /* Same height as education card */
-  overflow: hidden; /* Contain the scroll */
-}
-
+/* Guestbook Form */
 .guestbook-form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-bottom: 15px;
-  flex-shrink: 0; /* Form stays fixed at top */
+  margin-bottom: 30px;
 }
 
 .form-input,
@@ -501,34 +496,33 @@ body::after {
   box-shadow: 0 0 0 #d44d8c;
 }
 
-/* Messages Container - EVERYTHING HERE SCROLLS TOGETHER */
-.messages-scroll-container {
-  flex: 1;
+/* Messages Section */
+.messages-container {
+  max-height: 400px;
   overflow-y: auto;
   padding-right: 10px;
-  min-height: 0;
   
   scrollbar-width: thin;
   scrollbar-color: #ffb6c1 #fff5f8;
 }
 
-.messages-scroll-container::-webkit-scrollbar {
+.messages-container::-webkit-scrollbar {
   width: 8px;
 }
 
-.messages-scroll-container::-webkit-scrollbar-track {
+.messages-container::-webkit-scrollbar-track {
   background: #fff5f8;
   border-radius: 10px;
   border: 2px solid #ffb6c1;
 }
 
-.messages-scroll-container::-webkit-scrollbar-thumb {
+.messages-container::-webkit-scrollbar-thumb {
   background: #ffb6c1;
   border-radius: 10px;
   border: 2px solid #fff5f8;
 }
 
-.messages-scroll-container::-webkit-scrollbar-thumb:hover {
+.messages-container::-webkit-scrollbar-thumb:hover {
   background: #ff69b4;
 }
 
@@ -536,7 +530,7 @@ body::after {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .messages-header h3 {
@@ -566,7 +560,6 @@ body::after {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding-bottom: 10px;
 }
 
 .message-card {
@@ -759,7 +752,7 @@ body::after {
   position: relative;
 }
 
-.footer::before {
+.footer::before{
   content: "🐈";
   font-size: 1.5rem;
   margin: 0 10px;
@@ -823,8 +816,9 @@ body::after {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  /* Education responsive */
   .education-card {
-    height: 400px;
+    height: 400px; /* Smaller on mobile */
   }
   
   .education-item {
@@ -834,10 +828,6 @@ body::after {
 
   .education-year {
     width: fit-content;
-  }
-
-  .guestbook-card {
-    height: 400px;
   }
 }
 
