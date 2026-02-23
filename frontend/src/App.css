@@ -304,20 +304,12 @@ body::after {
   transform: scale(1.1);
 }
 
-/* Guestbook Card - UPDATED LAYOUT */
-.guestbook-card {
-  display: flex;
-  flex-direction: column;
-  height: auto;
-  min-height: 500px;
-}
-
+/* Guestbook Form */
 .guestbook-form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-bottom: 20px;
-  flex-shrink: 0;
+  margin-bottom: 30px;
 }
 
 .form-input,
@@ -381,7 +373,14 @@ body::after {
   box-shadow: 0 0 0 #d44d8c;
 }
 
-/* Messages Section - NEW */
+/* Guestbook Card Layout - FIXED */
+.guestbook-card {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: 500px;
+}
+
 .messages-section {
   flex: 1;
   display: flex;
@@ -415,14 +414,12 @@ body::after {
   max-height: 300px;
   overflow-y: auto;
   padding-right: 5px;
-  flex: 1;
 }
 
 .messages-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 100%;
 }
 
 .message-card {
@@ -432,7 +429,7 @@ body::after {
   border-left: 5px solid #ff69b4;
   box-shadow: 0 2px 8px rgba(255, 105, 180, 0.1);
   transition: transform 0.2s;
-  width: 100%;
+  position: relative;
 }
 
 .message-card:hover {

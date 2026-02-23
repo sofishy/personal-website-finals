@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css'
 
-// Your deployed backend URL
+// Your deployed backend URL - VERIFY THIS IS CORRECT
 const API_URL = 'https://personal-website-finals-ivory.vercel.app/api/guestbook';
 
 function App() {
@@ -15,16 +15,16 @@ function App() {
 
   // Personal info - UPDATE THIS WITH YOUR INFO
   const profile = {
-    name: "Your Name", // Change this
-    title: "Web Developer | Cat Lover | Student", // Change this
-    bio: "This is your personal bio. Talk about yourself, your skills, and what you're passionate about! I love coding, cats, and creating beautiful web experiences.", // Change this
-    email: "your.email@example.com", // Change this
-    github: "https://github.com/yourusername", // Change this
-    linkedin: "https://linkedin.com/in/yourusername", // Change this
-    skills: ["React", "NestJS", "Supabase", "JavaScript", "HTML/CSS", "Vercel", "UI/UX Design", "Cat Wrangling"] // Change these
+    name: "Your Name",
+    title: "Web Developer | Cat Lover | Student",
+    bio: "This is your personal bio. Talk about yourself, your skills, and what you're passionate about! I love coding, cats, and creating beautiful web experiences.",
+    email: "your.email@example.com",
+    github: "https://github.com/yourusername",
+    linkedin: "https://linkedin.com/in/yourusername",
+    skills: ["React", "NestJS", "Supabase", "JavaScript", "HTML/CSS", "Vercel", "UI/UX Design", "Cat Wrangling"]
   };
 
-  // Photo gallery images - JUST PHOTOS, NO TITLES OR DESCRIPTIONS
+  // Photo gallery images
   const galleryImages = [
     { id: 1, url: "/images/tj1.jpg" },
     { id: 2, url: "/images/tj2.jpg" },
@@ -42,8 +42,9 @@ function App() {
     setLoading(true);
     setError(null);
     try {
-      console.log('📡 Fetching messages...');
+      console.log('📡 Fetching from:', API_URL);
       const response = await axios.get(API_URL);
+      console.log('✅ Received:', response.data);
       setMessages(response.data || []);
     } catch (err) {
       console.error('❌ Error:', err);
@@ -55,23 +56,27 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!name.trim() || !comment.trim()) return;
+    if (!name.trim() || !comment.trim()) {
+      alert('Please fill in both fields');
+      return;
+    }
 
     try {
-      await axios.post(API_URL, { 
+      console.log('📤 Sending:', { name, message: comment });
+      const response = await axios.post(API_URL, { 
         name: name.trim(), 
         message: comment.trim() 
       });
+      console.log('✅ Sent:', response.data);
       setName('');
       setComment('');
       fetchMessages();
     } catch (err) {
-      console.error('❌ Error:', err);
+      console.error('❌ Error sending:', err);
       alert('Failed to send message');
     }
   };
 
-  // Close modal
   const closeModal = () => {
     setSelectedImage(null);
   };
@@ -86,28 +91,19 @@ function App() {
 
       {/* Main Content - Bento Grid */}
       <main className="main">
-        {/* Profile Card - Full Width */}
+        {/* Profile Card */}
         <div className="bento-card profile-card">
           <h2>😸 about me</h2>
           <div className="profile-content">
-            <div className="profile-avatar">
-              😺
-            </div>
+            <div className="profile-avatar">😺</div>
             <div className="profile-info">
               <h1 className="profile-name">{profile.name}</h1>
               <p className="profile-title">{profile.title}</p>
               <p className="profile-bio">{profile.bio}</p>
-              
               <div className="social-links">
-                <a href={profile.github} target="_blank" rel="noopener noreferrer" className="social-link">
-                  🐱 GitHub
-                </a>
-                <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="social-link">
-                  😺 LinkedIn
-                </a>
-                <a href={`mailto:${profile.email}`} className="social-link">
-                  📧 Email
-                </a>
+                <a href={profile.github} target="_blank" rel="noopener noreferrer" className="social-link">🐱 GitHub</a>
+                <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="social-link">😺 LinkedIn</a>
+                <a href={`mailto:${profile.email}`} className="social-link">📧 Email</a>
               </div>
             </div>
           </div>
@@ -123,7 +119,7 @@ function App() {
                 className="gallery-item"
                 onClick={() => setSelectedImage(image.url)}
               >
-                <img src={image.url} alt="gallery photo" />
+                <img src={image.url} alt="gallery" />
               </div>
             ))}
           </div>
@@ -134,14 +130,12 @@ function App() {
           <h2>😸 skills</h2>
           <div className="skills-grid">
             {profile.skills.map((skill, index) => (
-              <div key={index} className="skill-item">
-                {skill}
-              </div>
+              <div key={index} className="skill-item">{skill}</div>
             ))}
           </div>
         </div>
 
-        {/* Guestbook Card - RESTRUCTURED */}
+        {/* Guestbook Card */}
         <div className="bento-card guestbook-card">
           <h2>😸 leave a message</h2>
           
@@ -164,11 +158,11 @@ function App() {
               required
             />
             <button type="submit" className="submit-btn">
-              send message
+              send message 🐱
             </button>
           </form>
 
-          {/* Messages section below - takes full width */}
+          {/* Messages section below */}
           <div className="messages-section">
             <div className="messages-header">
               <h3>messages</h3>
@@ -213,12 +207,12 @@ function App() {
         <p>© 2026 {profile.name} • made with 😺 and 🐱</p>
       </footer>
 
-      {/* Image Modal - SIMPLE, JUST THE IMAGE */}
+      {/* Image Modal */}
       {selectedImage && (
         <div className="modal" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <span className="close-btn" onClick={closeModal}>&times;</span>
-            <img src={selectedImage} alt="gallery photo" />
+            <img src={selectedImage} alt="gallery" />
           </div>
         </div>
       )}
