@@ -83,8 +83,8 @@ function App() {
     <div className="app">
       {/* Header */}
       <header className="header">
-        <h1>personal website</h1>
-        <p>✨ welcome to my little corner of the internet ✨</p>
+        <h1>Sofishy's Personal Profile Website</h1>
+        <p>✨Welcome!✨</p>
       </header>
 
       {/* Main Content - Bento Grid */}
@@ -143,14 +143,14 @@ function App() {
           <form onSubmit={handleSubmit} className="guestbook-form">
             <input
               type="text"
-              placeholder="your name"
+              placeholder="Your Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="form-input"
               required
             />
             <textarea
-              placeholder="your message..."
+              placeholder="Your Message"
               value={comment}
               onChange={(e) => setComment(e.target.value)}
               className="form-textarea"
@@ -164,7 +164,7 @@ function App() {
 
           {/* Messages */}
           <div className="messages-header">
-            <h3>messages</h3>
+            <h3>/Messages</h3>
             <span className="message-count">{messages.length}</span>
           </div>
 
@@ -179,7 +179,7 @@ function App() {
             
             {!loading && !error && messages.length === 0 && (
               <div className="no-messages">
-                be the first to leave a message!
+                Be the first to leave a message!
               </div>
             )}
             
