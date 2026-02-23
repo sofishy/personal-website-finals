@@ -125,6 +125,50 @@ function App() {
           </div>
         </div>
 
+        {/* Education Card - NEW */}
+        <div className="bento-card education-card">
+          <h2>Education</h2>
+          <div className="education-list">
+            
+            <div className="education-item">
+              <div className="education-year">2024 - Present</div>
+              <div className="education-details">
+                <h3>Bachelor of Science in Information Technology</h3>
+                <p className="education-school">Asia Pacific College</p>
+                <p className="education-desc">2nd Year Student</p>
+              </div>
+            </div>
+            
+            <div className="education-item">
+              <div className="education-year">2022 - 2024</div>
+              <div className="education-details">
+                <h3>Senior High School Graduate</h3>
+                <p className="education-school">Pasay City South High School</p>
+                <p className="education-desc">Science, Technology, Engineering and Mathematics (STEM)</p>
+              </div>
+            </div>
+            
+            <div className="education-item">
+              <div className="education-year">2018 - 2022</div>
+              <div className="education-details">
+                <h3>High School Graduate</h3>
+                <p className="education-school">Pasay City South High School</p>
+                <p className="education-desc">Junior High School</p>
+              </div>
+            </div>
+
+            <div className="education-item">
+              <div className="education-year">2012 - 2018</div>
+              <div className="education-details">
+                <h3>Elementary Graduate</h3>
+                <p className="education-school">Villamor Air Base Elementary School</p>
+                <p className="education-desc">Primary Education</p>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
         {/* Skills Card */}
         <div className="bento-card">
           <h2>Skills</h2>
