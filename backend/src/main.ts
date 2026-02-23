@@ -4,19 +4,14 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   
-  // Update CORS to allow your frontend
+  // Allow ALL origins temporarily (just to test)
   app.enableCors({
-    origin: [
-      'http://localhost:5173',
-      'https://personal-website-finals-kgrl.vercel.app',  // frontend URL
-      'https://personal-website-finals-ivory.vercel.app'   // backend URL
-    ],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
+    origin: '*',
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type'],
   });
   
   await app.listen(3000);
-  console.log('✅ Backend running on http://localhost:3000');
+  console.log('✅ Backend running');
 }
 bootstrap();
