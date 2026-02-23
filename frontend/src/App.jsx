@@ -25,14 +25,11 @@ function App() {
              "NestJS", 
              "Supabase", 
              "JavaScript", 
-             "TypeScript",  
              "HTML/CSS",  
              "Vercel", 
              "UI/UX Design", 
-             "Code Combat",
              "Git/GitHub",  // Added
-             "REST APIs",   // Added
-             "Responsive Design"]
+             "REST APIs"]
   };
 
   // Photo gallery images 
