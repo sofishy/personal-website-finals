@@ -28,7 +28,7 @@ function App() {
              "HTML/CSS",  
              "Vercel", 
              "UI/UX Design", 
-             "Git/GitHub",  // Added
+             "Git/GitHub",
              "REST APIs"]
   };
 
@@ -187,11 +187,11 @@ function App() {
           </div>
         </div>
 
-        {/* Guestbook Card - WITH SCROLLABLE MESSAGES */}
+        {/* Guestbook Card - WITH EVERYTHING SCROLLABLE */}
         <div className="bento-card guestbook-card">
           <h2>Leave a Message!</h2>
           
-          {/* Form - stays fixed */}
+          {/* Form - stays fixed at top */}
           <form onSubmit={handleSubmit} className="guestbook-form">
             <input
               type="text"
@@ -214,41 +214,39 @@ function App() {
             </button>
           </form>
 
-          {/* Messages Section - THIS WHOLE THING SCROLLS */}
-          <div className="messages-section">
+          {/* Messages Container - EVERYTHING HERE SCROLLS TOGETHER */}
+          <div className="messages-scroll-container">
             <div className="messages-header">
               <h3>Messages</h3>
               <span className="message-count">{messages.length}</span>
             </div>
 
-            <div className="messages-container">
-              {loading && <div className="loading">loading messages...</div>}
-              
-              {error && (
-                <div className="error-message">
-                  😿 {error}
-                </div>
-              )}
-              
-              {!loading && !error && messages.length === 0 && (
-                <div className="no-messages">
-                  Be the first to leave a message!
-                </div>
-              )}
-              
-              <div className="messages-list">
-                {messages.map((msg) => (
-                  <div key={msg.id} className="message-card">
-                    <div className="message-header">
-                      <span className="message-name">{msg.name}</span>
-                      <span className="message-date">
-                        {new Date(msg.created_at).toLocaleDateString()}
-                      </span>
-                    </div>
-                    <p className="message-text">{msg.message}</p>
-                  </div>
-                ))}
+            {loading && <div className="loading">loading messages...</div>}
+            
+            {error && (
+              <div className="error-message">
+                😿 {error}
               </div>
+            )}
+            
+            {!loading && !error && messages.length === 0 && (
+              <div className="no-messages">
+                Be the first to leave a message!
+              </div>
+            )}
+            
+            <div className="messages-list">
+              {messages.map((msg) => (
+                <div key={msg.id} className="message-card">
+                  <div className="message-header">
+                    <span className="message-name">{msg.name}</span>
+                    <span className="message-date">
+                      {new Date(msg.created_at).toLocaleDateString()}
+                    </span>
+                  </div>
+                  <p className="message-text">{msg.message}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>

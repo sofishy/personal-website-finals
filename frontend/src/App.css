@@ -424,11 +424,12 @@ body::after {
   transform: scale(1.1);
 }
 
-/* Guestbook Card - WITH SCROLLABLE MESSAGES */
+/* Guestbook Card - EVERYTHING SCROLLS */
 .guestbook-card {
   display: flex;
   flex-direction: column;
   height: 500px; /* Same height as education card */
+  overflow: hidden; /* Contain the scroll */
 }
 
 .guestbook-form {
@@ -500,21 +501,42 @@ body::after {
   box-shadow: 0 0 0 #d44d8c;
 }
 
-/* Messages Section - THIS IS THE SCROLLABLE PART */
-.messages-section {
-  flex: 1; /* Takes remaining space */
-  display: flex;
-  flex-direction: column;
-  min-height: 0; /* Important for flexbox scrolling */
-  overflow: hidden; /* Contain the scroll */
+/* Messages Container - EVERYTHING HERE SCROLLS TOGETHER */
+.messages-scroll-container {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 10px;
+  min-height: 0;
+  
+  scrollbar-width: thin;
+  scrollbar-color: #ffb6c1 #fff5f8;
+}
+
+.messages-scroll-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messages-scroll-container::-webkit-scrollbar-track {
+  background: #fff5f8;
+  border-radius: 10px;
+  border: 2px solid #ffb6c1;
+}
+
+.messages-scroll-container::-webkit-scrollbar-thumb {
+  background: #ffb6c1;
+  border-radius: 10px;
+  border: 2px solid #fff5f8;
+}
+
+.messages-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #ff69b4;
 }
 
 .messages-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
-  flex-shrink: 0; /* Header stays fixed */
+  margin-bottom: 15px;
 }
 
 .messages-header h3 {
@@ -538,35 +560,6 @@ body::after {
   font-size: 1rem;
   font-weight: bold;
   box-shadow: 0 2px 5px rgba(255, 105, 180, 0.2);
-}
-
-.messages-container {
-  flex: 1; /* Takes remaining space in messages-section */
-  overflow-y: auto; /* SCROLLABLE! */
-  padding-right: 10px;
-  
-  scrollbar-width: thin;
-  scrollbar-color: #ffb6c1 #fff5f8;
-}
-
-.messages-container::-webkit-scrollbar {
-  width: 8px;
-}
-
-.messages-container::-webkit-scrollbar-track {
-  background: #fff5f8;
-  border-radius: 10px;
-  border: 2px solid #ffb6c1;
-}
-
-.messages-container::-webkit-scrollbar-thumb {
-  background: #ffb6c1;
-  border-radius: 10px;
-  border: 2px solid #fff5f8;
-}
-
-.messages-container::-webkit-scrollbar-thumb:hover {
-  background: #ff69b4;
 }
 
 .messages-list {
