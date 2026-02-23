@@ -83,7 +83,7 @@ function App() {
     <div className="app">
       {/* Header */}
       <header className="header">
-        <h1>Sofishy's Personal Profile Website</h1>
+        <h1>My Personal Profile Website</h1>
         <p>✨Welcome!✨</p>
       </header>
 
@@ -164,7 +164,7 @@ function App() {
 
           {/* Messages */}
           <div className="messages-header">
-            <h3>/Messages</h3>
+            <h3>Messages</h3>
             <span className="message-count">{messages.length}</span>
           </div>
 

@@ -85,7 +85,7 @@ body::after {
 
 .header h1::before,
 .header h1::after {
-  content: "😸";
+  content: "";
   font-size: 3rem;
   margin: 0 15px;
   display: inline-block;
@@ -132,7 +132,7 @@ body::after {
 }
 
 .bento-card::before {
-  content: "🐱";
+  content: "";
   position: absolute;
   bottom: 10px;
   right: 10px;
@@ -153,7 +153,7 @@ body::after {
 }
 
 .bento-card h2::before {
-  content: "😸";
+  content: "";
   font-size: 2rem;
 }
 
@@ -380,7 +380,7 @@ body::after {
 }
 
 .submit-btn::after {
-  content: "😺";
+  content: "💌";
   font-size: 1.3rem;
 }
 
