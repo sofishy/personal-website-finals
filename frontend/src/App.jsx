@@ -11,6 +11,7 @@ function App() {
   const [comment, setComment] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   // Personal info - UPDATE THIS WITH YOUR INFO
   const profile = {
@@ -22,6 +23,16 @@ function App() {
     linkedin: "https://linkedin.com/in/yourusername", // Change this
     skills: ["React", "NestJS", "Supabase", "JavaScript", "HTML/CSS", "Vercel", "UI/UX Design", "Cat Wrangling"] // Change these
   };
+
+  // Photo gallery images - JUST PHOTOS, NO TITLES OR DESCRIPTIONS
+  const galleryImages = [
+    { id: 1, url: "/images/tj1.jpg" },
+    { id: 2, url: "/images/tj2.jpg" },
+    { id: 3, url: "/images/fam1.jpg" },
+    { id: 4, url: "/images/fam2.jpg" },
+    { id: 5, url: "/images/friend1.jpg" },
+    { id: 6, url: "/images/friend2.jpg" }
+  ];
 
   useEffect(() => {
     fetchMessages();
@@ -60,6 +71,11 @@ function App() {
     }
   };
 
+  // Close modal
+  const closeModal = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <div className="app">
       {/* Header */}
@@ -94,6 +110,22 @@ function App() {
                 </a>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Photo Gallery Card - CLEAN, NO TEXT OVERLAY */}
+        <div className="bento-card gallery-card">
+          <h2>😸 photo gallery</h2>
+          <div className="gallery-grid">
+            {galleryImages.map((image) => (
+              <div 
+                key={image.id} 
+                className="gallery-item"
+                onClick={() => setSelectedImage(image.url)}
+              >
+                <img src={image.url} alt="gallery photo" />
+              </div>
+            ))}
           </div>
         </div>
 
@@ -176,6 +208,16 @@ function App() {
       <footer className="footer">
         <p>© 2026 {profile.name} • made with 😺 and 🐱</p>
       </footer>
+
+      {/* Image Modal - SIMPLE, JUST THE IMAGE */}
+      {selectedImage && (
+        <div className="modal" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <span className="close-btn" onClick={closeModal}>&times;</span>
+            <img src={selectedImage} alt="gallery photo" />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
