@@ -316,7 +316,7 @@ body::after {
   transform: scale(1.1);
 }
 
-/* Center the guestbook card */
+/* Centered guestbook card */
 .guestbook-card {
   grid-column: 1 / -1 !important;
   max-width: 800px !important;
@@ -405,7 +405,7 @@ body::after {
   scrollbar-color: #ffb6c1 #fff5f8;
 }
 
-/* Custom scrollbar for Chrome/Safari/Edge */
+/*scrollbar*/
 .messages-container::-webkit-scrollbar {
   width: 8px;
 }
@@ -652,8 +652,7 @@ body::after {
   position: relative;
 }
 
-.footer::before,
-.footer::after {
+.footer::before{
   content: "🐈";
   font-size: 1.5rem;
   margin: 0 10px;
