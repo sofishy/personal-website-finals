@@ -770,6 +770,27 @@ body::after {
   to { transform: rotate(360deg); }
 }
 
+/* PINK SCROLLBAR FOR GUESTBOOK - NEW */
+.guestbook-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.guestbook-scroll::-webkit-scrollbar-track {
+  background: #fff5f8;
+  border-radius: 10px;
+  border: 2px solid #ffb6c1;
+}
+
+.guestbook-scroll::-webkit-scrollbar-thumb {
+  background: #ffb6c1;
+  border-radius: 10px;
+  border: 2px solid #fff5f8;
+}
+
+.guestbook-scroll::-webkit-scrollbar-thumb:hover {
+  background: #ff69b4;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .main {

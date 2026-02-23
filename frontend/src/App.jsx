@@ -170,7 +170,7 @@ function App() {
           </div>
         </div>
 
-        {/* Guestbook Card - EVERYTHING SCROLLS TOGETHER */}
+        {/* Guestbook Card - MATCHES SKILLS HEIGHT WITH PINK SCROLLBAR */}
         <div className="bento-card" style={{ 
           height: '500px', 
           display: 'flex', 
@@ -178,12 +178,15 @@ function App() {
           overflow: 'hidden',
           padding: '30px'
         }}>
-          {/* THIS WHOLE INNER DIV SCROLLS - EVERYTHING TOGETHER */}
+          {/* Scrollable container with pink scrollbar */}
           <div style={{ 
             overflowY: 'auto',
             flex: 1,
-            paddingRight: '5px'
-          }}>
+            paddingRight: '10px',
+            scrollbarWidth: 'thin',
+            scrollbarColor: '#ffb6c1 #fff5f8'
+          }}
+          className="guestbook-scroll">
             <h2 style={{ marginBottom: '20px' }}>Leave a Message!</h2>
             
             {/* Form */}
@@ -221,7 +224,7 @@ function App() {
                   minHeight: '100px',
                   backgroundColor: 'white',
                   color: '#8b4c61',
-                  resize: 'vertical'  /* This allows vertical resize but not dragging in/out */
+                  resize: 'vertical'
                 }}
                 rows="3"
                 required
