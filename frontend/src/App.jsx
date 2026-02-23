@@ -3,7 +3,7 @@ import axios from 'axios'
 import './App.css'
 
 // Your deployed backend URL
-const API_URL = 'https://personal-website-finals-ivory.vercel.app/api/guestbook';
+const API_URL = 'https://personal-website-finals-ivory.vercel.app/guestbook';
 
 function App() {
   const [messages, setMessages] = useState([]);
