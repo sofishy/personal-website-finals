@@ -13,18 +13,18 @@ function App() {
   const [error, setError] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
 
-  // Personal info - UPDATE THIS WITH YOUR INFO
+  // Personal info
   const profile = {
-    name: "Sofia", // Changed to your name
-    title: "Web Developer | Cat Lover | Student",
-    bio: "This is your personal bio. Talk about yourself, your skills, and what you're passionate about! I love coding, cats, and creating beautiful web experiences.",
+    name: "Sofia", 
+    title: "Iane Sofia Francheska A. Padua",
+    bio: "I am a 2nd Year BSIT student from Asia Pacific College,",
     email: "your.email@example.com",
-    github: "https://github.com/yourusername",
-    linkedin: "https://linkedin.com/in/yourusername",
-    skills: ["React", "NestJS", "Supabase", "JavaScript", "HTML/CSS", "Vercel", "UI/UX Design", "Cat Wrangling"]
+    github: "https://github.com/sofishy",
+    linkedin: "www.linkedin.com/in/iane-sofia-padua-005b40322",
+    skills: ["React", "NestJS", "Supabase", "JavaScript", "HTML/CSS", "Vercel", "UI/UX Design", "Code Combat"]
   };
 
-  // Photo gallery images - REPLACE WITH YOUR IMAGES
+  // Photo gallery images 
   const galleryImages = [
     { id: 1, url: "/images/tj1.jpg" },
     { id: 2, url: "/images/fam2.jpg" },
@@ -89,9 +89,9 @@ function App() {
 
       {/* Main Content - Bento Grid */}
       <main className="main">
-        {/* Profile Card - Full Width WITH YOUR PHOTO */}
+        {/* Profile Card */}
         <div className="bento-card profile-card">
-          <h2>😸 about me</h2>
+          <h2>About Me</h2>
           <div className="profile-content">
             <div className="profile-avatar">
               <img src="/images/sofia.jpg" alt="Sofia" className="profile-image" />
@@ -111,7 +111,7 @@ function App() {
 
         {/* Photo Gallery Card */}
         <div className="bento-card gallery-card">
-          <h2>😸 photo gallery</h2>
+          <h2>Photo Gallery</h2>
           <div className="gallery-grid">
             {galleryImages.map((image) => (
               <div 
@@ -127,7 +127,7 @@ function App() {
 
         {/* Skills Card */}
         <div className="bento-card">
-          <h2>😸 skills</h2>
+          <h2>Skills</h2>
           <div className="skills-grid">
             {profile.skills.map((skill, index) => (
               <div key={index} className="skill-item">{skill}</div>
@@ -137,7 +137,7 @@ function App() {
 
         {/* Guestbook Card - CENTERED */}
         <div className="bento-card guestbook-card">
-          <h2>😸 leave a message</h2>
+          <h2>Leave a Message!</h2>
           
           {/* Form */}
           <form onSubmit={handleSubmit} className="guestbook-form">
@@ -158,7 +158,7 @@ function App() {
               required
             />
             <button type="submit" className="submit-btn">
-              send message 🐱
+              Send
             </button>
           </form>
 
@@ -202,7 +202,7 @@ function App() {
 
       {/* Footer */}
       <footer className="footer">
-        <p>© 2026 {profile.name} • made with 😺 and 🐱</p>
+        <p>© 2026 {profile.title}</p>
       </footer>
 
       {/* Image Modal */}
