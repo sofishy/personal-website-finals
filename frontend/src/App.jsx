@@ -162,7 +162,7 @@ function App() {
 
         {/* Skills Card - FIXED HEIGHT */}
         <div className="bento-card" style={{ 
-          height: '500px',
+          height: '550px',
           display: 'flex',
           flexDirection: 'column',
           overflow: 'hidden',
@@ -186,9 +186,13 @@ function App() {
             scrollbarColor: '#ffb6c1 #fff5f8'
           }}
           className="guestbook-scroll">
-            <div className="skills-grid">
+            <div className="skills-grid" style={{ marginTop: 0 }}>
               {profile.skills.map((skill, index) => (
-                <div key={index} className="skill-item">{skill}</div>
+                <div key={index} className="skill-item" style={{ 
+                  padding: '18px 12px',
+                  minHeight: '80px',
+                  fontSize: '0.95rem'
+                }}>{skill}</div>
               ))}
             </div>
           </div>
@@ -196,7 +200,7 @@ function App() {
 
         {/* Guestbook Card - FIXED HEIGHT */}
         <div className="bento-card" style={{ 
-          height: '500px',
+          height: '550px',
           display: 'flex',
           flexDirection: 'column',
           overflow: 'hidden',
@@ -220,7 +224,7 @@ function App() {
             }}>Leave a Message!</h2>
             
             {/* Form */}
-            <div style={{ marginBottom: '15px' }}>
+            <div style={{ marginBottom: '20px' }}>
               <input
                 type="text"
                 placeholder="Your Name"
@@ -228,8 +232,8 @@ function App() {
                 onChange={(e) => setName(e.target.value)}
                 style={{
                   width: '100%',
-                  padding: '12px',
-                  marginBottom: '10px',
+                  padding: '14px',
+                  marginBottom: '12px',
                   border: '3px solid #ffb6c1',
                   borderRadius: '25px',
                   fontSize: '15px',
@@ -245,18 +249,18 @@ function App() {
                 onChange={(e) => setComment(e.target.value)}
                 style={{
                   width: '100%',
-                  padding: '12px',
-                  marginBottom: '10px',
+                  padding: '14px',
+                  marginBottom: '12px',
                   border: '3px solid #ffb6c1',
                   borderRadius: '25px',
                   fontSize: '15px',
-                  minHeight: '80px',
+                  minHeight: '100px',
                   backgroundColor: 'white',
                   color: '#8b4c61',
                   outline: 'none',
                   resize: 'none'
                 }}
-                rows="2"
+                rows="3"
                 required
               />
               <button 
@@ -264,7 +268,7 @@ function App() {
                 onClick={handleSubmit}
                 style={{
                   width: '100%',
-                  padding: '12px',
+                  padding: '14px',
                   background: 'linear-gradient(45deg, #ff69b4, #ffb6c1)',
                   color: 'white',
                   border: 'none',
@@ -272,7 +276,8 @@ function App() {
                   fontSize: '1.1rem',
                   cursor: 'pointer',
                   fontWeight: 'bold',
-                  boxShadow: '0 4px 0 #d44d8c'
+                  boxShadow: '0 4px 0 #d44d8c',
+                  marginBottom: '10px'
                 }}
               >
                 Send ❤️
@@ -284,18 +289,18 @@ function App() {
               display: 'flex', 
               justifyContent: 'space-between', 
               alignItems: 'center',
-              marginBottom: '10px',
+              marginBottom: '15px',
               borderTop: '2px dashed #ffb6c1',
-              paddingTop: '10px'
+              paddingTop: '15px'
             }}>
-              <h3 style={{ color: '#ff69b4', fontSize: '1.3rem', margin: 0 }}>Messages</h3>
+              <h3 style={{ color: '#ff69b4', fontSize: '1.4rem', margin: 0 }}>Messages</h3>
               <span style={{ 
                 background: '#ffb6c1', 
                 color: 'white', 
-                padding: '4px 12px', 
+                padding: '5px 15px', 
                 borderRadius: '20px',
                 fontWeight: 'bold',
-                fontSize: '0.9rem'
+                fontSize: '1rem'
               }}>
                 {messages.length}
               </span>
@@ -303,7 +308,7 @@ function App() {
 
             {/* Messages List */}
             {loading && (
-              <div style={{ textAlign: 'center', padding: '15px', color: '#ffb6c1', fontSize: '0.9rem' }}>
+              <div style={{ textAlign: 'center', padding: '20px', color: '#ffb6c1' }}>
                 loading messages...
               </div>
             )}
@@ -312,10 +317,9 @@ function App() {
               <div style={{ 
                 background: '#fff0f3', 
                 color: '#ff4d6d', 
-                padding: '12px', 
-                borderRadius: '12px',
-                textAlign: 'center',
-                fontSize: '0.9rem'
+                padding: '15px', 
+                borderRadius: '15px',
+                textAlign: 'center'
               }}>
                 😿 {error}
               </div>
@@ -324,10 +328,9 @@ function App() {
             {!loading && !error && messages.length === 0 && (
               <div style={{ 
                 textAlign: 'center', 
-                padding: '20px', 
+                padding: '30px', 
                 color: '#ffb6c1',
-                fontStyle: 'italic',
-                fontSize: '0.9rem'
+                fontStyle: 'italic'
               }}>
                 Be the first to leave a message!
               </div>
@@ -336,27 +339,27 @@ function App() {
             {messages.map((msg) => (
               <div key={msg.id} style={{
                 background: 'white',
-                padding: '12px',
-                borderRadius: '12px',
-                marginBottom: '8px',
-                borderLeft: '4px solid #ff69b4',
-                boxShadow: '0 2px 5px rgba(255,105,180,0.1)'
+                padding: '15px',
+                borderRadius: '15px',
+                marginBottom: '10px',
+                borderLeft: '5px solid #ff69b4',
+                boxShadow: '0 2px 8px rgba(255,105,180,0.1)'
               }}>
                 <div style={{ 
                   display: 'flex', 
                   justifyContent: 'space-between', 
-                  marginBottom: '4px',
+                  marginBottom: '5px',
                   borderBottom: '2px dashed #ffb6c1',
-                  paddingBottom: '4px'
+                  paddingBottom: '5px'
                 }}>
-                  <span style={{ color: '#ff69b4', fontWeight: 'bold', fontSize: '0.95rem' }}>
+                  <span style={{ color: '#ff69b4', fontWeight: 'bold', fontSize: '1rem' }}>
                     🐱 {msg.name}
                   </span>
-                  <span style={{ color: '#ffb6c1', fontSize: '0.7rem' }}>
+                  <span style={{ color: '#ffb6c1', fontSize: '0.8rem' }}>
                     {new Date(msg.created_at).toLocaleDateString()}
                   </span>
                 </div>
-                <p style={{ color: '#8b4c61', margin: 0, fontSize: '0.9rem' }}>{msg.message}</p>
+                <p style={{ color: '#8b4c61', margin: 0, fontSize: '0.95rem' }}>{msg.message}</p>
               </div>
             ))}
           </div>
