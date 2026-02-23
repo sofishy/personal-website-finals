@@ -21,7 +21,18 @@ function App() {
     email: "your.email@example.com",
     github: "https://github.com/sofishy",
     linkedin: "www.linkedin.com/in/iane-sofia-padua-005b40322",
-    skills: ["React", "NestJS", "Supabase", "JavaScript", "HTML/CSS", "Vercel", "UI/UX Design", "Code Combat"]
+    skills: ["React",
+             "NestJS", 
+             "Supabase", 
+             "JavaScript", 
+             "TypeScript",  
+             "HTML/CSS",  
+             "Vercel", 
+             "UI/UX Design", 
+             "Code Combat",
+             "Git/GitHub",  // Added
+             "REST APIs",   // Added
+             "Responsive Design"]
   };
 
   // Photo gallery images 
@@ -179,7 +190,7 @@ function App() {
           </div>
         </div>
 
-        {/* Guestbook Card - NOT CENTERED anymore */}
+        {/* Guestbook Card */}
         <div className="bento-card">
           <h2>Leave a Message!</h2>
           

@@ -281,12 +281,12 @@ body::after {
   border-color: white;
 }
 
-/* Education Card - MATCH GALLERY HEIGHT */
+/* Education Card - FIXED HEIGHT TO MATCH GALLERY */
 .education-card {
   grid-column: span 1;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 500px; /* Fixed height to match gallery */
 }
 
 .education-list {
@@ -298,11 +298,12 @@ body::after {
   padding-right: 10px;
   flex: 1;
   
+  /* Custom scrollbar */
   scrollbar-width: thin;
   scrollbar-color: #ffb6c1 #fff5f8;
-  max-height: none;
 }
 
+/* Custom scrollbar for Chrome/Safari/Edge */
 .education-list::-webkit-scrollbar {
   width: 6px;
 }
@@ -816,6 +817,10 @@ body::after {
   }
 
   /* Education responsive */
+  .education-card {
+    height: 400px; /* Smaller on mobile */
+  }
+  
   .education-item {
     flex-direction: column;
     gap: 8px;
@@ -823,10 +828,6 @@ body::after {
 
   .education-year {
     width: fit-content;
-  }
-  
-  .education-list {
-    max-height: none;
   }
 }
 
