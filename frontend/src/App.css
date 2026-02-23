@@ -50,7 +50,7 @@ body::after {
   margin-bottom: 30px;
   padding: 30px 20px;
   background: linear-gradient(135deg, #ff9eb5 0%, #ffb6c1 100%);
-  border-radius: 40px;
+  border-radius: 40px 40px 40px 40px;
   box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
   position: relative;
   overflow: hidden;
@@ -78,6 +78,7 @@ body::after {
   text-shadow: 3px 3px 0 #ff69b4, 6px 6px 0 rgba(255, 105, 180, 0.3);
   margin-bottom: 10px;
   animation: bounce 2s infinite;
+  letter-spacing: 2px;
   position: relative;
   z-index: 1;
 }
@@ -100,6 +101,8 @@ body::after {
   backdrop-filter: blur(5px);
   border: 2px solid white;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 /* Main Content - Bento Grid */
@@ -301,6 +304,15 @@ body::after {
   transform: scale(1.1);
 }
 
+/* Center the guestbook card */
+.guestbook-card {
+  grid-column: 1 / -1 !important;
+  max-width: 800px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 100% !important;
+}
+
 /* Guestbook Form */
 .guestbook-form {
   display: flex;
@@ -371,6 +383,37 @@ body::after {
 }
 
 /* Messages Section */
+.messages-container {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 10px;
+  
+  /* Themed Scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #ffb6c1 #fff5f8;
+}
+
+/* Custom scrollbar for Chrome/Safari/Edge */
+.messages-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messages-container::-webkit-scrollbar-track {
+  background: #fff5f8;
+  border-radius: 10px;
+  border: 2px solid #ffb6c1;
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+  background: #ffb6c1;
+  border-radius: 10px;
+  border: 2px solid #fff5f8;
+}
+
+.messages-container::-webkit-scrollbar-thumb:hover {
+  background: #ff69b4;
+}
+
 .messages-header {
   display: flex;
   justify-content: space-between;
@@ -381,6 +424,14 @@ body::after {
 .messages-header h3 {
   color: #ff69b4;
   font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.messages-header h3::before {
+  content: "💭";
+  font-size: 1.5rem;
 }
 
 .message-count {
@@ -389,58 +440,55 @@ body::after {
   padding: 5px 15px;
   border-radius: 25px;
   font-size: 1rem;
-}
-
-.messages-container {
-  max-height: 400px;
-  overflow-y: auto;
-  padding-right: 10px;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(255, 105, 180, 0.2);
 }
 
 .messages-list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 12px;
 }
 
 .message-card {
   background: white;
-  padding: 20px;
-  border-radius: 20px;
+  padding: 15px;
+  border-radius: 15px;
   border-left: 5px solid #ff69b4;
-  box-shadow: 0 5px 15px rgba(255, 105, 180, 0.1);
-  transition: transform 0.3s;
+  box-shadow: 0 2px 8px rgba(255, 105, 180, 0.1);
+  transition: transform 0.2s;
   position: relative;
 }
 
 .message-card:hover {
   transform: translateX(5px);
-  box-shadow: 0 5px 20px rgba(255, 105, 180, 0.2);
+  box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
 }
 
 .message-card::before {
   content: "💬";
   position: absolute;
-  top: -10px;
-  left: 20px;
+  top: -8px;
+  left: 15px;
   background: white;
-  padding: 5px;
+  padding: 3px;
   border-radius: 50%;
   border: 2px solid #ffb6c1;
+  font-size: 0.9rem;
 }
 
 .message-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   padding-bottom: 5px;
   border-bottom: 2px dashed #ffb6c1;
 }
 
 .message-name {
   color: #ff69b4;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: bold;
   display: flex;
   align-items: center;
@@ -449,19 +497,23 @@ body::after {
 
 .message-name::before {
   content: "🐱";
+  font-size: 1rem;
 }
 
 .message-date {
   color: #ffb6c1;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   background: #fff0f3;
   padding: 3px 10px;
   border-radius: 15px;
+  font-weight: 500;
 }
 
 .message-text {
   line-height: 1.6;
   color: #8b4c61;
+  font-size: 1rem;
+  word-break: break-word;
 }
 
 /* Loading and Empty States */
@@ -528,6 +580,8 @@ body::after {
   border-radius: 30px;
   max-width: 500px;
   width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
   position: relative;
   border: 5px solid #ffb6c1;
   box-shadow: 0 20px 40px rgba(255, 105, 180, 0.4);
@@ -583,6 +637,7 @@ body::after {
   margin-top: 30px;
   border: 2px dashed #ffb6c1;
   color: #8b4c61;
+  position: relative;
 }
 
 .footer::before,
@@ -602,15 +657,6 @@ body::after {
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}
-
-/* Center guestbook card */
-.guestbook-card {
-  grid-column: 1 / -1;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
 }
 
 /* Responsive Design */
@@ -634,6 +680,10 @@ body::after {
     font-size: 2rem;
   }
 
+  .social-links {
+    justify-content: center;
+  }
+
   .header h1 {
     font-size: 2.5rem;
   }
@@ -644,12 +694,28 @@ body::after {
     margin: 0 8px;
   }
 
+  .bento-card {
+    padding: 20px;
+  }
+
+  .bento-card h2 {
+    font-size: 1.8rem;
+  }
+
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .guestbook-card {
+    max-width: 100% !important;
   }
 }
 
 @media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
   .header h1 {
     font-size: 2rem;
   }
@@ -657,6 +723,12 @@ body::after {
   .header h1::before,
   .header h1::after {
     display: none;
+  }
+
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+    font-size: 60px;
   }
 
   .skills-grid {
@@ -669,7 +741,37 @@ body::after {
     gap: 5px;
   }
 
+  .bento-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .bento-card h2::before {
+    font-size: 1.5rem;
+  }
+
   .gallery-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .gallery-item {
+    aspect-ratio: 16/9;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+    padding: 0;
+  }
+
+  .bento-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+
+  .submit-btn,
+  .social-link:hover {
+    display: none;
   }
 }
