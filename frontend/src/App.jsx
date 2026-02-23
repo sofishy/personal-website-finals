@@ -30,8 +30,8 @@ function App() {
              "Vercel", 
              "UI/UX Design", 
              "Code Combat",
-             "Git/GitHub",  // Added
-             "REST APIs",   // Added
+             "Git/GitHub",
+             "REST APIs",
              "Responsive Design"]
   };
 
@@ -190,12 +190,18 @@ function App() {
           </div>
         </div>
 
-        {/* Guestbook Card */}
-        <div className="bento-card">
+        {/* Guestbook Card - FIXED - WON'T MOVE */}
+        <div className="bento-card" style={{ 
+          height: '500px', 
+          display: 'flex', 
+          flexDirection: 'column',
+          overflow: 'hidden',
+          position: 'relative'
+        }}>
           <h2>Leave a Message!</h2>
           
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="guestbook-form">
+          {/* Form - fixed at top */}
+          <form onSubmit={handleSubmit} className="guestbook-form" style={{ flexShrink: 0 }}>
             <input
               type="text"
               placeholder="Your Name"
@@ -217,13 +223,19 @@ function App() {
             </button>
           </form>
 
-          {/* Messages */}
-          <div className="messages-header">
+          {/* Messages Header - fixed below form */}
+          <div className="messages-header" style={{ flexShrink: 0 }}>
             <h3>Messages</h3>
             <span className="message-count">{messages.length}</span>
           </div>
 
-          <div className="messages-container">
+          {/* Messages Container - ONLY THIS SCROLLS */}
+          <div className="messages-container" style={{ 
+            flex: 1,
+            overflowY: 'auto',
+            minHeight: 0,
+            position: 'relative'
+          }}>
             {loading && <div className="loading">loading messages...</div>}
             
             {error && (
