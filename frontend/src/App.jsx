@@ -170,7 +170,7 @@ function App() {
           </div>
         </div>
 
-        {/* Guestbook Card - 100% FIXED */}
+        {/* Guestbook Card - EVERYTHING SCROLLS TOGETHER */}
         <div className="bento-card" style={{ 
           height: '500px', 
           display: 'flex', 
@@ -178,89 +178,93 @@ function App() {
           overflow: 'hidden',
           padding: '30px'
         }}>
-          <h2 style={{ marginBottom: '20px', flexShrink: 0 }}>Leave a Message!</h2>
-          
-          {/* Form - stays fixed */}
-          <div style={{ marginBottom: '20px', flexShrink: 0 }}>
-            <input
-              type="text"
-              placeholder="Your Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              style={{
-                width: '100%',
-                padding: '15px',
-                marginBottom: '10px',
-                border: '3px solid #ffb6c1',
-                borderRadius: '25px',
-                fontSize: '16px',
-                backgroundColor: 'white',
-                color: '#8b4c61'
-              }}
-              required
-            />
-            <textarea
-              placeholder="Your Message"
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-              style={{
-                width: '100%',
-                padding: '15px',
-                marginBottom: '10px',
-                border: '3px solid #ffb6c1',
-                borderRadius: '25px',
-                fontSize: '16px',
-                minHeight: '100px',
-                backgroundColor: 'white',
-                color: '#8b4c61'
-              }}
-              rows="3"
-              required
-            />
-            <button 
-              type="submit"
-              onClick={handleSubmit}
-              style={{
-                width: '100%',
-                padding: '15px',
-                background: 'linear-gradient(45deg, #ff69b4, #ffb6c1)',
-                color: 'white',
-                border: 'none',
-                borderRadius: '50px',
-                fontSize: '1.2rem',
-                cursor: 'pointer'
-              }}
-            >
-              Send ❤️
-            </button>
-          </div>
-
-          {/* Messages Header - stays fixed */}
-          <div style={{ 
-            display: 'flex', 
-            justifyContent: 'space-between', 
-            alignItems: 'center',
-            marginBottom: '15px',
-            flexShrink: 0
-          }}>
-            <h3 style={{ color: '#ff69b4', margin: 0 }}>Messages</h3>
-            <span style={{ 
-              background: '#ffb6c1', 
-              color: 'white', 
-              padding: '5px 15px', 
-              borderRadius: '25px',
-              fontWeight: 'bold'
-            }}>
-              {messages.length}
-            </span>
-          </div>
-
-          {/* Messages List - ONLY THIS SCROLLS */}
+          {/* THIS WHOLE INNER DIV SCROLLS - EVERYTHING TOGETHER */}
           <div style={{ 
             overflowY: 'auto',
             flex: 1,
             paddingRight: '5px'
           }}>
+            <h2 style={{ marginBottom: '20px' }}>Leave a Message!</h2>
+            
+            {/* Form */}
+            <form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
+              <input
+                type="text"
+                placeholder="Your Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="form-input"
+                style={{
+                  width: '100%',
+                  padding: '15px',
+                  marginBottom: '10px',
+                  border: '3px solid #ffb6c1',
+                  borderRadius: '25px',
+                  fontSize: '16px',
+                  backgroundColor: 'white',
+                  color: '#8b4c61'
+                }}
+                required
+              />
+              <textarea
+                placeholder="Your Message"
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                className="form-textarea"
+                style={{
+                  width: '100%',
+                  padding: '15px',
+                  marginBottom: '10px',
+                  border: '3px solid #ffb6c1',
+                  borderRadius: '25px',
+                  fontSize: '16px',
+                  minHeight: '100px',
+                  backgroundColor: 'white',
+                  color: '#8b4c61',
+                  resize: 'vertical'  /* This allows vertical resize but not dragging in/out */
+                }}
+                rows="3"
+                required
+              />
+              <button 
+                type="submit"
+                className="submit-btn"
+                style={{
+                  width: '100%',
+                  padding: '15px',
+                  background: 'linear-gradient(45deg, #ff69b4, #ffb6c1)',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '50px',
+                  fontSize: '1.2rem',
+                  cursor: 'pointer',
+                  marginBottom: '20px'
+                }}
+              >
+                Send ❤️
+              </button>
+            </form>
+
+            {/* Messages Header */}
+            <div style={{ 
+              display: 'flex', 
+              justifyContent: 'space-between', 
+              alignItems: 'center',
+              marginBottom: '15px'
+            }}>
+              <h3 style={{ color: '#ff69b4', margin: 0 }}>Messages</h3>
+              <span style={{ 
+                background: '#ffb6c1', 
+                color: 'white', 
+                padding: '5px 15px', 
+                borderRadius: '25px',
+                fontWeight: 'bold'
+              }}>
+                {messages.length}
+              </span>
+            </div>
+
+            {/* Messages List */}
             {loading && (
               <div style={{ textAlign: 'center', padding: '20px', color: '#ffb6c1' }}>
                 loading messages...
