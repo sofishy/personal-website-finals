@@ -13,7 +13,7 @@ function App() {
   const [error, setError] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
 
-  // Personal info
+  // Personal info - with MORE SKILLS added
   const profile = {
     name: "Sofia", 
     title: "Iane Sofia Francheska A. Padua",
@@ -21,7 +21,19 @@ function App() {
     email: "your.email@example.com",
     github: "https://github.com/sofishy",
     linkedin: "www.linkedin.com/in/iane-sofia-padua-005b40322",
-    skills: ["React", "NestJS", "Supabase", "JavaScript", "HTML/CSS", "Vercel", "UI/UX Design", "Code Combat"]
+    skills: [
+      "React", 
+      "NestJS", 
+      "Supabase", 
+      "JavaScript", 
+      "TypeScript",
+      "HTML/CSS", 
+      "Vercel", 
+      "UI/UX Design", 
+      "Git/GitHub",
+      "REST APIs",
+      "Responsive Design"
+    ]
   };
 
   // Photo gallery images 
@@ -169,7 +181,7 @@ function App() {
           </div>
         </div>
 
-        {/* Skills Card */}
+        {/* Skills Card - ENLARGED */}
         <div className="bento-card">
           <h2>Skills</h2>
           <div className="skills-grid">
