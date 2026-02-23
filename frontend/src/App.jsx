@@ -170,15 +170,15 @@ function App() {
           </div>
         </div>
 
-        {/* Guestbook Card - MATCHES SKILLS HEIGHT WITH PINK SCROLLBAR */}
+        {/* Guestbook Card - FIXED SIZE, NO RESIZE */}
         <div className="bento-card" style={{ 
-          height: '500px', 
-          display: 'flex', 
+          height: '500px',
+          display: 'flex',
           flexDirection: 'column',
           overflow: 'hidden',
-          padding: '30px'
+          padding: '25px'
         }}>
-          {/* Scrollable container with pink scrollbar */}
+          {/* Scrollable container */}
           <div style={{ 
             overflowY: 'auto',
             flex: 1,
@@ -187,25 +187,31 @@ function App() {
             scrollbarColor: '#ffb6c1 #fff5f8'
           }}
           className="guestbook-scroll">
-            <h2 style={{ marginBottom: '20px' }}>Leave a Message!</h2>
+            <h2 style={{ 
+              color: '#ff69b4', 
+              fontSize: '2rem', 
+              marginBottom: '20px',
+              borderBottom: '3px dashed #ffb6c1',
+              paddingBottom: '15px'
+            }}>Leave a Message!</h2>
             
             {/* Form */}
-            <form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
+            <div style={{ marginBottom: '25px' }}>
               <input
                 type="text"
                 placeholder="Your Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="form-input"
                 style={{
                   width: '100%',
                   padding: '15px',
-                  marginBottom: '10px',
+                  marginBottom: '12px',
                   border: '3px solid #ffb6c1',
                   borderRadius: '25px',
                   fontSize: '16px',
                   backgroundColor: 'white',
-                  color: '#8b4c61'
+                  color: '#8b4c61',
+                  outline: 'none'
                 }}
                 required
               />
@@ -213,25 +219,25 @@ function App() {
                 placeholder="Your Message"
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
-                className="form-textarea"
                 style={{
                   width: '100%',
                   padding: '15px',
-                  marginBottom: '10px',
+                  marginBottom: '12px',
                   border: '3px solid #ffb6c1',
                   borderRadius: '25px',
                   fontSize: '16px',
                   minHeight: '100px',
                   backgroundColor: 'white',
                   color: '#8b4c61',
-                  resize: 'vertical'
+                  outline: 'none',
+                  resize: 'none' /* THIS REMOVES THE DRAG HANDLE */
                 }}
                 rows="3"
                 required
               />
               <button 
                 type="submit"
-                className="submit-btn"
+                onClick={handleSubmit}
                 style={{
                   width: '100%',
                   padding: '15px',
@@ -241,21 +247,24 @@ function App() {
                   borderRadius: '50px',
                   fontSize: '1.2rem',
                   cursor: 'pointer',
-                  marginBottom: '20px'
+                  fontWeight: 'bold',
+                  boxShadow: '0 5px 0 #d44d8c'
                 }}
               >
                 Send ❤️
               </button>
-            </form>
+            </div>
 
             {/* Messages Header */}
             <div style={{ 
               display: 'flex', 
               justifyContent: 'space-between', 
               alignItems: 'center',
-              marginBottom: '15px'
+              marginBottom: '15px',
+              borderTop: '2px dashed #ffb6c1',
+              paddingTop: '15px'
             }}>
-              <h3 style={{ color: '#ff69b4', margin: 0 }}>Messages</h3>
+              <h3 style={{ color: '#ff69b4', fontSize: '1.5rem', margin: 0 }}>Messages</h3>
               <span style={{ 
                 background: '#ffb6c1', 
                 color: 'white', 
@@ -303,7 +312,8 @@ function App() {
                 padding: '15px',
                 borderRadius: '15px',
                 marginBottom: '10px',
-                borderLeft: '5px solid #ff69b4'
+                borderLeft: '5px solid #ff69b4',
+                boxShadow: '0 2px 8px rgba(255,105,180,0.1)'
               }}>
                 <div style={{ 
                   display: 'flex', 
