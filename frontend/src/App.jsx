@@ -125,7 +125,7 @@ function App() {
           </div>
         </div>
 
-        {/* Education Card - NEW */}
+        {/* Education Card */}
         <div className="bento-card education-card">
           <h2>Education</h2>
           <div className="education-list">
@@ -179,8 +179,8 @@ function App() {
           </div>
         </div>
 
-        {/* Guestbook Card - CENTERED */}
-        <div className="bento-card guestbook-card">
+        {/* Guestbook Card */}
+        <div className="bento-card">
           <h2>Leave a Message!</h2>
           
           {/* Form */}
