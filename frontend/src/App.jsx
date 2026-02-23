@@ -21,18 +21,7 @@ function App() {
     email: "your.email@example.com",
     github: "https://github.com/sofishy",
     linkedin: "www.linkedin.com/in/iane-sofia-padua-005b40322",
-    skills: ["React",
-             "NestJS", 
-             "Supabase", 
-             "JavaScript", 
-             "TypeScript",  
-             "HTML/CSS",  
-             "Vercel", 
-             "UI/UX Design", 
-             "Code Combat",
-             "Git/GitHub",
-             "REST APIs",
-             "Responsive Design"]
+    skills: ["React", "NestJS", "Supabase", "JavaScript", "TypeScript", "HTML/CSS", "Vercel", "UI/UX Design", "Code Combat", "Git/GitHub", "REST APIs", "Responsive Design"]
   };
 
   // Photo gallery images 
@@ -53,12 +42,9 @@ function App() {
     setLoading(true);
     setError(null);
     try {
-      console.log('Fetching from:', API_URL);
       const response = await axios.get(API_URL);
-      console.log('Received:', response.data);
       setMessages(Array.isArray(response.data) ? response.data : []);
     } catch (err) {
-      console.error('Error:', err);
       setError('Failed to load messages');
     } finally {
       setLoading(false);
@@ -81,7 +67,6 @@ function App() {
       setComment('');
       fetchMessages();
     } catch (err) {
-      console.error('Post error:', err);
       alert('Failed to send message');
     }
   };
@@ -140,7 +125,6 @@ function App() {
         <div className="bento-card education-card">
           <h2>Education</h2>
           <div className="education-list">
-            
             <div className="education-item">
               <div className="education-year">2024 - Present</div>
               <div className="education-details">
@@ -149,16 +133,14 @@ function App() {
                 <p className="education-desc">2nd Year Student</p>
               </div>
             </div>
-            
             <div className="education-item">
               <div className="education-year">2022 - 2024</div>
               <div className="education-details">
                 <h3>Senior High School Graduate</h3>
                 <p className="education-school">Pasay City South High School</p>
-                <p className="education-desc">Science, Technology, Engineering and Mathematics (STEM)</p>
+                <p className="education-desc">STEM</p>
               </div>
             </div>
-            
             <div className="education-item">
               <div className="education-year">2018 - 2022</div>
               <div className="education-details">
@@ -167,7 +149,6 @@ function App() {
                 <p className="education-desc">Junior High School</p>
               </div>
             </div>
-
             <div className="education-item">
               <div className="education-year">2012 - 2018</div>
               <div className="education-details">
@@ -176,7 +157,6 @@ function App() {
                 <p className="education-desc">Primary Education</p>
               </div>
             </div>
-            
           </div>
         </div>
 
@@ -190,86 +170,158 @@ function App() {
           </div>
         </div>
 
-        {/* Guestbook Card - FIXED - WON'T MOVE */}
+        {/* Guestbook Card - 100% FIXED */}
         <div className="bento-card" style={{ 
           height: '500px', 
           display: 'flex', 
           flexDirection: 'column',
           overflow: 'hidden',
-          position: 'relative'
+          padding: '30px'
         }}>
-          <h2>Leave a Message!</h2>
+          <h2 style={{ marginBottom: '20px', flexShrink: 0 }}>Leave a Message!</h2>
           
-          {/* Form - fixed at top */}
-          <form onSubmit={handleSubmit} className="guestbook-form" style={{ flexShrink: 0 }}>
+          {/* Form - stays fixed */}
+          <div style={{ marginBottom: '20px', flexShrink: 0 }}>
             <input
               type="text"
               placeholder="Your Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="form-input"
+              style={{
+                width: '100%',
+                padding: '15px',
+                marginBottom: '10px',
+                border: '3px solid #ffb6c1',
+                borderRadius: '25px',
+                fontSize: '16px',
+                backgroundColor: 'white',
+                color: '#8b4c61'
+              }}
               required
             />
             <textarea
               placeholder="Your Message"
               value={comment}
               onChange={(e) => setComment(e.target.value)}
-              className="form-textarea"
+              style={{
+                width: '100%',
+                padding: '15px',
+                marginBottom: '10px',
+                border: '3px solid #ffb6c1',
+                borderRadius: '25px',
+                fontSize: '16px',
+                minHeight: '100px',
+                backgroundColor: 'white',
+                color: '#8b4c61'
+              }}
               rows="3"
               required
             />
-            <button type="submit" className="submit-btn">
-              Send
+            <button 
+              type="submit"
+              onClick={handleSubmit}
+              style={{
+                width: '100%',
+                padding: '15px',
+                background: 'linear-gradient(45deg, #ff69b4, #ffb6c1)',
+                color: 'white',
+                border: 'none',
+                borderRadius: '50px',
+                fontSize: '1.2rem',
+                cursor: 'pointer'
+              }}
+            >
+              Send ❤️
             </button>
-          </form>
-
-          {/* Messages Header - fixed below form */}
-          <div className="messages-header" style={{ flexShrink: 0 }}>
-            <h3>Messages</h3>
-            <span className="message-count">{messages.length}</span>
           </div>
 
-          {/* Messages Container - ONLY THIS SCROLLS */}
-          <div className="messages-container" style={{ 
-            flex: 1,
-            overflowY: 'auto',
-            minHeight: 0,
-            position: 'relative'
+          {/* Messages Header - stays fixed */}
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center',
+            marginBottom: '15px',
+            flexShrink: 0
           }}>
-            {loading && <div className="loading">loading messages...</div>}
+            <h3 style={{ color: '#ff69b4', margin: 0 }}>Messages</h3>
+            <span style={{ 
+              background: '#ffb6c1', 
+              color: 'white', 
+              padding: '5px 15px', 
+              borderRadius: '25px',
+              fontWeight: 'bold'
+            }}>
+              {messages.length}
+            </span>
+          </div>
+
+          {/* Messages List - ONLY THIS SCROLLS */}
+          <div style={{ 
+            overflowY: 'auto',
+            flex: 1,
+            paddingRight: '5px'
+          }}>
+            {loading && (
+              <div style={{ textAlign: 'center', padding: '20px', color: '#ffb6c1' }}>
+                loading messages...
+              </div>
+            )}
             
             {error && (
-              <div className="error-message">
+              <div style={{ 
+                background: '#fff0f3', 
+                color: '#ff4d6d', 
+                padding: '15px', 
+                borderRadius: '15px',
+                textAlign: 'center'
+              }}>
                 😿 {error}
               </div>
             )}
             
             {!loading && !error && messages.length === 0 && (
-              <div className="no-messages">
+              <div style={{ 
+                textAlign: 'center', 
+                padding: '30px', 
+                color: '#ffb6c1',
+                fontStyle: 'italic'
+              }}>
                 Be the first to leave a message!
               </div>
             )}
             
-            <div className="messages-list">
-              {messages.map((msg) => (
-                <div key={msg.id} className="message-card">
-                  <div className="message-header">
-                    <span className="message-name">{msg.name}</span>
-                    <span className="message-date">
-                      {new Date(msg.created_at).toLocaleDateString()}
-                    </span>
-                  </div>
-                  <p className="message-text">{msg.message}</p>
+            {messages.map((msg) => (
+              <div key={msg.id} style={{
+                background: 'white',
+                padding: '15px',
+                borderRadius: '15px',
+                marginBottom: '10px',
+                borderLeft: '5px solid #ff69b4'
+              }}>
+                <div style={{ 
+                  display: 'flex', 
+                  justifyContent: 'space-between', 
+                  marginBottom: '5px',
+                  borderBottom: '2px dashed #ffb6c1',
+                  paddingBottom: '5px'
+                }}>
+                  <span style={{ color: '#ff69b4', fontWeight: 'bold' }}>
+                    🐱 {msg.name}
+                  </span>
+                  <span style={{ color: '#ffb6c1', fontSize: '0.8rem' }}>
+                    {new Date(msg.created_at).toLocaleDateString()}
+                  </span>
                 </div>
-              ))}
-            </div>
+                <p style={{ color: '#8b4c61', margin: 0 }}>{msg.message}</p>
+              </div>
+            ))}
           </div>
         </div>
       </main>
 
       {/* Footer */}
       <footer className="footer">
-        <p>© 2026 {profile.title}</p>
+        <p>© 2026 {profile.name}</p>
       </footer>
 
       {/* Image Modal */}
@@ -277,7 +329,7 @@ function App() {
         <div className="modal" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <span className="close-btn" onClick={closeModal}>&times;</span>
-            <img src={selectedImage} alt="gallery" />
+            <img src={selectedImage} alt="gallery" style={{ width: '100%', borderRadius: '15px' }} />
           </div>
         </div>
       )}
