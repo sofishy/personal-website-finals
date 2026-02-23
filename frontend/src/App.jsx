@@ -160,19 +160,43 @@ function App() {
           </div>
         </div>
 
-        {/* Skills Card */}
-        <div className="bento-card">
-          <h2>Skills</h2>
-          <div className="skills-grid">
-            {profile.skills.map((skill, index) => (
-              <div key={index} className="skill-item">{skill}</div>
-            ))}
+        {/* Skills Card - FIXED HEIGHT */}
+        <div className="bento-card" style={{ 
+          height: '500px',
+          display: 'flex',
+          flexDirection: 'column',
+          overflow: 'hidden',
+          padding: '25px'
+        }}>
+          <h2 style={{ 
+            color: '#ff69b4', 
+            fontSize: '2rem', 
+            marginBottom: '15px',
+            borderBottom: '3px dashed #ffb6c1',
+            paddingBottom: '10px',
+            flexShrink: 0
+          }}>Skills</h2>
+          
+          {/* Scrollable skills container */}
+          <div style={{ 
+            overflowY: 'auto',
+            flex: 1,
+            paddingRight: '8px',
+            scrollbarWidth: 'thin',
+            scrollbarColor: '#ffb6c1 #fff5f8'
+          }}
+          className="guestbook-scroll">
+            <div className="skills-grid">
+              {profile.skills.map((skill, index) => (
+                <div key={index} className="skill-item">{skill}</div>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Guestbook Card - EXACT SAME SIZE AS SKILLS */}
+        {/* Guestbook Card - FIXED HEIGHT */}
         <div className="bento-card" style={{ 
-          height: '480px', /* MATCHES SKILLS CARD HEIGHT */
+          height: '500px',
           display: 'flex',
           flexDirection: 'column',
           overflow: 'hidden',
@@ -195,7 +219,7 @@ function App() {
               paddingBottom: '10px'
             }}>Leave a Message!</h2>
             
-            {/* Form - compact spacing */}
+            {/* Form */}
             <div style={{ marginBottom: '15px' }}>
               <input
                 type="text"
@@ -255,7 +279,7 @@ function App() {
               </button>
             </div>
 
-            {/* Messages Header - compact */}
+            {/* Messages Header */}
             <div style={{ 
               display: 'flex', 
               justifyContent: 'space-between', 
@@ -277,7 +301,7 @@ function App() {
               </span>
             </div>
 
-            {/* Messages List - compact */}
+            {/* Messages List */}
             {loading && (
               <div style={{ textAlign: 'center', padding: '15px', color: '#ffb6c1', fontSize: '0.9rem' }}>
                 loading messages...
