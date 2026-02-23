@@ -182,7 +182,6 @@ body::after {
   background: white;
 }
 
-/* Profile image */
 .profile-image {
   width: 100%;
   height: 100%;
@@ -281,12 +280,12 @@ body::after {
   border-color: white;
 }
 
-/* Education Card - FIXED HEIGHT TO MATCH GALLERY */
+/* Education Card - SCROLLABLE */
 .education-card {
   grid-column: span 1;
   display: flex;
   flex-direction: column;
-  height: 500px; /* Fixed height to match gallery */
+  height: 500px;
 }
 
 .education-list {
@@ -298,12 +297,10 @@ body::after {
   padding-right: 10px;
   flex: 1;
   
-  /* Custom scrollbar */
   scrollbar-width: thin;
   scrollbar-color: #ffb6c1 #fff5f8;
 }
 
-/* Custom scrollbar for Chrome/Safari/Edge */
 .education-list::-webkit-scrollbar {
   width: 6px;
 }
@@ -387,7 +384,7 @@ body::after {
   line-height: 1.4;
 }
 
-/* Photo Gallery Styles */
+/* Photo Gallery Styles - UPDATED */
 .gallery-card {
   grid-column: span 1;
 }
@@ -427,12 +424,19 @@ body::after {
   transform: scale(1.1);
 }
 
-/* Guestbook Form */
+/* Guestbook Card - FIXED HEIGHT WITH SCROLL */
+.guestbook-card {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+}
+
 .guestbook-form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
+  flex-shrink: 0;
 }
 
 .form-input,
@@ -496,41 +500,12 @@ body::after {
   box-shadow: 0 0 0 #d44d8c;
 }
 
-/* Messages Section */
-.messages-container {
-  max-height: 400px;
-  overflow-y: auto;
-  padding-right: 10px;
-  
-  scrollbar-width: thin;
-  scrollbar-color: #ffb6c1 #fff5f8;
-}
-
-.messages-container::-webkit-scrollbar {
-  width: 8px;
-}
-
-.messages-container::-webkit-scrollbar-track {
-  background: #fff5f8;
-  border-radius: 10px;
-  border: 2px solid #ffb6c1;
-}
-
-.messages-container::-webkit-scrollbar-thumb {
-  background: #ffb6c1;
-  border-radius: 10px;
-  border: 2px solid #fff5f8;
-}
-
-.messages-container::-webkit-scrollbar-thumb:hover {
-  background: #ff69b4;
-}
-
 .messages-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  flex-shrink: 0;
 }
 
 .messages-header h3 {
@@ -556,10 +531,41 @@ body::after {
   box-shadow: 0 2px 5px rgba(255, 105, 180, 0.2);
 }
 
+.messages-container {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 10px;
+  min-height: 0;
+  
+  scrollbar-width: thin;
+  scrollbar-color: #ffb6c1 #fff5f8;
+}
+
+.messages-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messages-container::-webkit-scrollbar-track {
+  background: #fff5f8;
+  border-radius: 10px;
+  border: 2px solid #ffb6c1;
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+  background: #ffb6c1;
+  border-radius: 10px;
+  border: 2px solid #fff5f8;
+}
+
+.messages-container::-webkit-scrollbar-thumb:hover {
+  background: #ff69b4;
+}
+
 .messages-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding-bottom: 10px;
 }
 
 .message-card {
@@ -752,7 +758,7 @@ body::after {
   position: relative;
 }
 
-.footer::before{
+.footer::before {
   content: "🐈";
   font-size: 1.5rem;
   margin: 0 10px;
@@ -816,9 +822,8 @@ body::after {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Education responsive */
   .education-card {
-    height: 400px; /* Smaller on mobile */
+    height: 400px;
   }
   
   .education-item {
@@ -828,6 +833,10 @@ body::after {
 
   .education-year {
     width: fit-content;
+  }
+
+  .guestbook-card {
+    height: 400px;
   }
 }
 
