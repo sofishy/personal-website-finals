@@ -243,13 +243,13 @@ body::after {
 /* Skills Grid */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 15px;
 }
 
 .skill-item {
   background: white;
-  padding: 15px;
+  padding: 20px 15px;
   text-align: center;
   border-radius: 20px;
   border: 2px solid #ffb6c1;
@@ -258,6 +258,11 @@ body::after {
   color: #8b4c61;
   position: relative;
   overflow: hidden;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
 }
 
 .skill-item::after {
