@@ -978,3 +978,19 @@ body {
     display: none;
   }
 }
+
+/* SIMPLE CENTERING FIX - ADD THIS AT THE VERY END */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 20px;
+}
+
+.app {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
