@@ -752,13 +752,6 @@ body::after {
   position: relative;
 }
 
-.footer::before{
-  content: "🐈";
-  font-size: 1.5rem;
-  margin: 0 10px;
-  opacity: 0.5;
-}
-
 /* Animations */
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }

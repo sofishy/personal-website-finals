@@ -17,7 +17,7 @@ function App() {
   const profile = {
     name: "Hello! I am", 
     title: "Iane Sofia Francheska A. Padua",
-    bio: "I am a 2nd Year BSIT student from Asia Pacific College,",
+    bio: "A 2nd Year BSIT student from Asia Pacific College",
     email: "iapadua@student.apc.edu.ph",
     github: "https://github.com/sofishy",
     linkedin: "www.linkedin.com/in/iane-sofia-padua-005b40322",
