@@ -20,7 +20,7 @@ function App() {
     bio: "A 2nd Year BSIT student from Asia Pacific College",
     email: "iapadua@student.apc.edu.ph",
     github: "https://github.com/sofishy",
-    linkedin: "www.linkedin.com/in/iane-sofia-padua-005b40322",
+    linkedin: "https://www.linkedin.com/in/iane-sofia-padua-005b40322",
     facebook: "https://www.facebook.com/sofishee/", 
     skills: ["React", "NestJS", "Supabase", "JavaScript", "TypeScript", "HTML/CSS", "Vercel", "UI/UX Design", "Code Combat", "Git/GitHub", "REST APIs", "Responsive Design"],
     interests: [
