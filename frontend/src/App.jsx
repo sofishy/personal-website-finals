@@ -280,7 +280,7 @@ function App() {
                   marginBottom: '10px'
                 }}
               >
-                Send ❤️
+                Send 💌
               </button>
             </div>
 
