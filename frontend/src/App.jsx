@@ -93,10 +93,10 @@ function App() {
   <h1>୨୧┇Sofia's World┇୨୧</h1>
   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '10px' }}>
     <img 
-      src="https://supplies.ju.mp/assets/images/gallery04/fb6dd1f8_original.gif?v=1c1ba870" 
+      src="https://supplies.ju.mp/assets/images/gallery08/97857a15.gif?v=1c1ba870" 
       alt="Cute sticker" 
       style={{ 
-        width: '100px', 
+        width: '120px', 
         height: 'auto',
         borderRadius: '10px'
       }} 
