@@ -12,6 +12,11 @@ body {
   color: #8b4c61;
   position: relative;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 0;
 }
 
 /* Cute floating cats background */
@@ -39,6 +44,7 @@ body::after {
 
 .app {
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   position: relative;
 }
@@ -111,6 +117,7 @@ body::after {
   grid-template-columns: 1fr 1fr;
   gap: 25px;
   margin-bottom: 30px;
+  width: 100%;
 }
 
 /* Bento Cards */
@@ -286,7 +293,7 @@ body::after {
   grid-column: span 1;
   display: flex;
   flex-direction: column;
-  height: 500px; /* Fixed height to match gallery */
+  height: 500px;
 }
 
 .education-list {
@@ -298,12 +305,10 @@ body::after {
   padding-right: 10px;
   flex: 1;
   
-  /* Custom scrollbar */
   scrollbar-width: thin;
   scrollbar-color: #ffb6c1 #fff5f8;
 }
 
-/* Custom scrollbar for Chrome/Safari/Edge */
 .education-list::-webkit-scrollbar {
   width: 6px;
 }
@@ -784,6 +789,54 @@ body::after {
   background: #ff69b4;
 }
 
+/* Pink scrollbar for modal */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: #fff5f8;
+  border-radius: 10px;
+  border: 2px solid #ffb6c1;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: #ffb6c1;
+  border-radius: 10px;
+  border: 2px solid #fff5f8;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: #ff69b4;
+}
+
+/* Entire webpage scrollbar - PINK */
+html::-webkit-scrollbar {
+  width: 12px;
+}
+
+html::-webkit-scrollbar-track {
+  background: #fff5f8;
+  border-radius: 10px;
+  border: 2px solid #ffb6c1;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #ffb6c1;
+  border-radius: 10px;
+  border: 2px solid #fff5f8;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: #ff69b4;
+}
+
+/* For Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #ffb6c1 #fff5f8;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .main {
@@ -890,77 +943,6 @@ body::after {
   }
 }
 
-/* Pink scrollbar for modal */
-.modal-content::-webkit-scrollbar {
-  width: 8px;
-}
-
-.modal-content::-webkit-scrollbar-track {
-  background: #fff5f8;
-  border-radius: 10px;
-  border: 2px solid #ffb6c1;
-}
-
-.modal-content::-webkit-scrollbar-thumb {
-  background: #ffb6c1;
-  border-radius: 10px;
-  border: 2px solid #fff5f8;
-}
-
-.modal-content::-webkit-scrollbar-thumb:hover {
-  background: #ff69b4;
-}
-
-/* Entire webpage scrollbar - PINK */
-html::-webkit-scrollbar {
-  width: 12px;
-}
-
-html::-webkit-scrollbar-track {
-  background: #fff5f8;
-  border-radius: 10px;
-  border: 2px solid #ffb6c1;
-}
-
-html::-webkit-scrollbar-thumb {
-  background: #ffb6c1;
-  border-radius: 10px;
-  border: 2px solid #fff5f8;
-}
-
-html::-webkit-scrollbar-thumb:hover {
-  background: #ff69b4;
-}
-
-/* For Firefox */
-html {
-  scrollbar-width: thin;
-  scrollbar-color: #ffb6c1 #fff5f8;
-}
-
-/* SIMPLE CENTERING */
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  margin: 0;
-  padding: 20px;
-}
-
-.app {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.main {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
-  width: 100%;
-}
-
 /* Print Styles */
 @media print {
   body {
@@ -977,20 +959,4 @@ body {
   .social-link:hover {
     display: none;
   }
-}
-
-/* SIMPLE CENTERING FIX - ADD THIS AT THE VERY END */
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  margin: 0;
-  padding: 20px;
-}
-
-.app {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
 }
