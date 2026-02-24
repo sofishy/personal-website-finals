@@ -15,7 +15,7 @@ function App() {
 
   // Personal info
   const profile = {
-    name: "Sofia", 
+    name: "Hello! I am", 
     title: "Iane Sofia Francheska A. Padua",
     bio: "I am a 2nd Year BSIT student from Asia Pacific College,",
     email: "iapadua@student.apc.edu.ph",
@@ -89,12 +89,22 @@ function App() {
   return (
     <div className="app">
       {/* Header */}
-      <header className="header">
-        <h1>My Personal Profile Website</h1>
-        <p>✨Welcome!✨</p>
-      </header>
+<header className="header">
+  <h1>୨୧┇Sofia's World┇୨୧</h1>
+  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '10px' }}>
+    <img 
+      src="https://supplies.ju.mp/assets/images/gallery04/fb6dd1f8_original.gif?v=1c1ba870" 
+      alt="Cute sticker" 
+      style={{ 
+        width: '100px', 
+        height: 'auto',
+        borderRadius: '10px'
+      }} 
+    />
+  </div>
+</header>
 
-      {/* Main Content - Bento Grid */}
+      {/* Main Content - Bento Grid */} 
       <main className="main">
         {/* First Row - About Me + Interests */}
         <div className="bento-card profile-card" style={{ gridColumn: 'span 1' }}>
@@ -110,7 +120,7 @@ function App() {
               <div className="social-links">
                 <a href={profile.github} target="_blank" rel="noopener noreferrer" className="social-link">🐈‍⬛ GitHub</a>
                 <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="social-link">💻 LinkedIn</a>
-                <a href={profile.facebook} target="_blank" rel="noopener noreferrer" className="social-link">📘 Facebook</a>
+                <a href={profile.facebook} target="_blank" rel="noopener noreferrer" className="social-link">📱 Facebook</a>
                 <a href={`mailto:${profile.email}`} className="social-link">📧 Email</a>
               </div>
             </div>
@@ -432,7 +442,7 @@ function App() {
 
       {/* Footer */}
       <footer className="footer">
-        <p>© 2026 {profile.name}</p>
+        <p>© 2026 {profile.title}</p>
       </footer>
 
       {/* Image Modal */}
