@@ -908,3 +908,24 @@ body::after {
     display: none;
   }
 }
+
+/* Pink scrollbar for modal */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: #fff5f8;
+  border-radius: 10px;
+  border: 2px solid #ffb6c1;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: #ffb6c1;
+  border-radius: 10px;
+  border: 2px solid #fff5f8;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: #ff69b4;
+}
