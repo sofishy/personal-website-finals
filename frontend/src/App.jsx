@@ -18,9 +18,10 @@ function App() {
     name: "Sofia", 
     title: "Iane Sofia Francheska A. Padua",
     bio: "I am a 2nd Year BSIT student from Asia Pacific College,",
-    email: "your.email@example.com",
+    email: "iapadua@student.apc.edu.ph",
     github: "https://github.com/sofishy",
     linkedin: "www.linkedin.com/in/iane-sofia-padua-005b40322",
+    facebook: "https://www.facebook.com/sofishee/", 
     skills: ["React", "NestJS", "Supabase", "JavaScript", "TypeScript", "HTML/CSS", "Vercel", "UI/UX Design", "Code Combat", "Git/GitHub", "REST APIs", "Responsive Design"],
     interests: [
       "🏸 Badminton",
@@ -109,20 +110,22 @@ function App() {
               <div className="social-links">
                 <a href={profile.github} target="_blank" rel="noopener noreferrer" className="social-link">🐈‍⬛ GitHub</a>
                 <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="social-link">💻 LinkedIn</a>
+                <a href={profile.facebook} target="_blank" rel="noopener noreferrer" className="social-link">📘 Facebook</a>
                 <a href={`mailto:${profile.email}`} className="social-link">📧 Email</a>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Interests Card - RIGHT BESIDE ABOUT ME */}
+        {/* Interests Card - PINK THEME */}
         <div className="bento-card" style={{ 
           height: 'auto',
           minHeight: '400px',
           display: 'flex',
           flexDirection: 'column',
           padding: '25px',
-          gridColumn: 'span 1'
+          gridColumn: 'span 1',
+          background: 'linear-gradient(135deg, #fff5f8 0%, #ffe4e9 100%)'
         }}>
           <h2 style={{ 
             color: '#ff69b4', 
@@ -140,7 +143,7 @@ function App() {
           }}>
             {profile.interests.map((interest, index) => (
               <div key={index} style={{
-                background: 'rgba(255, 255, 255, 0.8)',
+                background: 'white',
                 padding: '15px 10px',
                 borderRadius: '20px',
                 border: '2px solid #ffb6c1',
@@ -148,15 +151,25 @@ function App() {
                 color: '#8b4c61',
                 fontSize: '1.1rem',
                 fontWeight: '500',
-                transition: 'transform 0.2s',
+                transition: 'all 0.2s',
                 cursor: 'default',
                 boxShadow: '0 2px 8px rgba(255,105,180,0.1)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}>
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'scale(1.02)';
+                e.currentTarget.style.background = '#ff69b4';
+                e.currentTarget.style.color = 'white';
+                e.currentTarget.style.borderColor = '#ff69b4';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'scale(1)';
+                e.currentTarget.style.background = 'white';
+                e.currentTarget.style.color = '#8b4c61';
+                e.currentTarget.style.borderColor = '#ffb6c1';
+              }}>
                 {interest}
               </div>
             ))}
@@ -419,7 +432,7 @@ function App() {
 
       {/* Footer */}
       <footer className="footer">
-        <p>© 2026 {profile.title}</p>
+        <p>© 2026 {profile.name}</p>
       </footer>
 
       {/* Image Modal */}
