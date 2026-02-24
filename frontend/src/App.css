@@ -929,3 +929,30 @@ body::after {
 .modal-content::-webkit-scrollbar-thumb:hover {
   background: #ff69b4;
 }
+
+/* Entire webpage scrollbar - PINK */
+html::-webkit-scrollbar {
+  width: 12px;
+}
+
+html::-webkit-scrollbar-track {
+  background: #fff5f8;
+  border-radius: 10px;
+  border: 2px solid #ffb6c1;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #ffb6c1;
+  border-radius: 10px;
+  border: 2px solid #fff5f8;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: #ff69b4;
+}
+
+/* For Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #ffb6c1 #fff5f8;
+}
