@@ -21,7 +21,17 @@ function App() {
     email: "your.email@example.com",
     github: "https://github.com/sofishy",
     linkedin: "www.linkedin.com/in/iane-sofia-padua-005b40322",
-    skills: ["React", "NestJS", "Supabase", "JavaScript", "TypeScript", "HTML/CSS", "Vercel", "UI/UX Design", "Code Combat", "Git/GitHub", "REST APIs", "Responsive Design"]
+    skills: ["React", "NestJS", "Supabase", "JavaScript", "TypeScript", "HTML/CSS", "Vercel", "UI/UX Design", "Code Combat", "Git/GitHub", "REST APIs", "Responsive Design"],
+    interests: [
+      "🏸 Badminton",
+      "🎸 Music", 
+      "🍿 Watching",
+      "📸 Photography",
+      "🧶 Crochet",
+      "😋 Eating",
+      "🎨 Art",
+      "💻 Coding"
+    ]
   };
 
   // Photo gallery images 
@@ -85,8 +95,8 @@ function App() {
 
       {/* Main Content - Bento Grid */}
       <main className="main">
-        {/* Profile Card */}
-        <div className="bento-card profile-card">
+        {/* First Row - About Me + Interests */}
+        <div className="bento-card profile-card" style={{ gridColumn: 'span 1' }}>
           <h2>About Me</h2>
           <div className="profile-content">
             <div className="profile-avatar">
@@ -105,7 +115,55 @@ function App() {
           </div>
         </div>
 
-        {/* Photo Gallery Card */}
+        {/* Interests Card - RIGHT BESIDE ABOUT ME */}
+        <div className="bento-card" style={{ 
+          height: 'auto',
+          minHeight: '400px',
+          display: 'flex',
+          flexDirection: 'column',
+          padding: '25px',
+          gridColumn: 'span 1'
+        }}>
+          <h2 style={{ 
+            color: '#ff69b4', 
+            fontSize: '2rem', 
+            marginBottom: '20px',
+            borderBottom: '3px dashed #ffb6c1',
+            paddingBottom: '10px'
+          }}>Interests ✨</h2>
+          
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gap: '12px',
+            flex: 1
+          }}>
+            {profile.interests.map((interest, index) => (
+              <div key={index} style={{
+                background: 'rgba(255, 255, 255, 0.8)',
+                padding: '15px 10px',
+                borderRadius: '20px',
+                border: '2px solid #ffb6c1',
+                textAlign: 'center',
+                color: '#8b4c61',
+                fontSize: '1.1rem',
+                fontWeight: '500',
+                transition: 'transform 0.2s',
+                cursor: 'default',
+                boxShadow: '0 2px 8px rgba(255,105,180,0.1)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}>
+                {interest}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Second Row - Photo Gallery + Education */}
         <div className="bento-card gallery-card">
           <h2>Photo Gallery</h2>
           <div className="gallery-grid">
@@ -121,7 +179,6 @@ function App() {
           </div>
         </div>
 
-        {/* Education Card */}
         <div className="bento-card education-card">
           <h2>Education</h2>
           <div className="education-list">
@@ -160,7 +217,7 @@ function App() {
           </div>
         </div>
 
-        {/* Skills Card - FIXED HEIGHT */}
+        {/* Third Row - Skills + Guestbook */}
         <div className="bento-card" style={{ 
           height: '550px',
           display: 'flex',
@@ -177,7 +234,6 @@ function App() {
             flexShrink: 0
           }}>Skills</h2>
           
-          {/* Scrollable skills container */}
           <div style={{ 
             overflowY: 'auto',
             flex: 1,
@@ -198,7 +254,6 @@ function App() {
           </div>
         </div>
 
-        {/* Guestbook Card - FIXED HEIGHT */}
         <div className="bento-card" style={{ 
           height: '550px',
           display: 'flex',
@@ -206,7 +261,6 @@ function App() {
           overflow: 'hidden',
           padding: '25px'
         }}>
-          {/* Scrollable container */}
           <div style={{ 
             overflowY: 'auto',
             flex: 1,
@@ -223,7 +277,6 @@ function App() {
               paddingBottom: '10px'
             }}>Leave a Message!</h2>
             
-            {/* Form */}
             <div style={{ marginBottom: '20px' }}>
               <input
                 type="text"
@@ -284,7 +337,6 @@ function App() {
               </button>
             </div>
 
-            {/* Messages Header */}
             <div style={{ 
               display: 'flex', 
               justifyContent: 'space-between', 
@@ -306,7 +358,6 @@ function App() {
               </span>
             </div>
 
-            {/* Messages List */}
             {loading && (
               <div style={{ textAlign: 'center', padding: '20px', color: '#ffb6c1' }}>
                 loading messages...
@@ -368,7 +419,7 @@ function App() {
 
       {/* Footer */}
       <footer className="footer">
-        <p>© 2026 {profile.name}</p>
+        <p>© 2026 {profile.title}</p>
       </footer>
 
       {/* Image Modal */}
